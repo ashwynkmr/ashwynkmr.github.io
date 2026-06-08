@@ -3,289 +3,378 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ashwyn — Strategy & Operations</title>
-<meta name="description" content="Ashwyn — Strategy and Operations professional at the intersection of data and execution." />
+<title>Ashwyn Kumar — Strategy, Operations & Partnerships</title>
+<meta name="description" content="Strategy & Operations leader turning partner ecosystems into engines of growth. From data, to decisions, to delivery." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          serif: ['Fraunces', 'ui-serif', 'Georgia'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: 'Fraunces', serif; letter-spacing: -0.02em; }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(-10%, -5%, 0) scale(1); }
+    50% { transform: translate3d(10%, 5%, 0) scale(1.1); }
+  }
+  .glow-1 { animation: drift 14s ease-in-out infinite; }
+  .glow-2 { animation: drift 18s ease-in-out infinite reverse; }
+  .fade-up { opacity: 0; transform: translateY(12px); animation: fadeUp 0.9s ease forwards; }
+  .fade-up.d1 { animation-delay: 0.05s; }
+  .fade-up.d2 { animation-delay: 0.15s; }
+  .fade-up.d3 { animation-delay: 0.25s; }
+  .fade-up.d4 { animation-delay: 0.35s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
 </head>
-<body>
+<body id="top" class="bg-slate-50 text-slate-900">
 
-<header class="nav">
-  <div class="container nav-inner">
-    <a href="#top" class="brand">Ashwyn</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+<!-- ===================== HERO ===================== -->
+<header class="relative overflow-hidden text-white">
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+  <div class="absolute inset-0 bg-grid opacity-60"></div>
+  <div class="glow-1 absolute -top-32 -left-20 h-[480px] w-[480px] rounded-full bg-gradient-to-br from-indigo-500/25 via-violet-500/15 to-transparent blur-3xl"></div>
+  <div class="glow-2 absolute -bottom-40 -right-20 h-[520px] w-[520px] rounded-full bg-gradient-to-br from-cyan-400/20 via-sky-500/10 to-transparent blur-3xl"></div>
+
+  <div class="relative container mx-auto max-w-6xl px-6 pt-8 pb-24 md:pt-12 md:pb-32">
+    <nav class="flex items-center justify-between">
+      <span class="font-display text-xl font-semibold tracking-tight">Ashwyn<span class="text-indigo-400">.</span></span>
+      <ul class="hidden md:flex items-center space-x-8 text-sm tracking-wide text-slate-300">
+        <li><a href="#approach" class="hover:text-white transition">Approach</a></li>
+        <li><a href="#case-studies" class="hover:text-white transition">Case Studies</a></li>
+        <li><a href="#experience" class="hover:text-white transition">Experience</a></li>
+        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+      </ul>
+      <a href="https://linkedin.com/in/ashwyn30/" target="_blank" rel="noopener" class="hidden md:inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition">
+        LinkedIn
+      </a>
     </nav>
+
+    <div class="mt-16 md:mt-24 grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center">
+      <div class="space-y-7">
+        <span class="fade-up d1 inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.35em] text-slate-200">
+          Strategy &middot; Operations &middot; Partnerships
+        </span>
+        <h1 class="fade-up d2 font-display text-4xl md:text-6xl font-semibold leading-[1.05]">
+          Turning partner ecosystems into <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-violet-300 to-cyan-300">engines of growth.</span>
+        </h1>
+        <p class="fade-up d3 text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl">
+          I'm a strategy and operations leader who connects data to the frontline. I help global teams turn complex partner motions into the segmentation, coverage, and workflows that actually ship &mdash; and move the numbers that matter.
+        </p>
+        <div class="fade-up d4 flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
+          <a href="mailto:ashwyn@utexas.edu" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-indigo-500/20 hover:bg-slate-100 transition">
+            Let's talk &rarr;
+          </a>
+          <a href="#case-studies" class="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white/90 hover:bg-white/10 transition">
+            See the playbooks
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-up d3 relative">
+        <div class="relative rounded-3xl border border-white/10 bg-white/[0.06] p-7 backdrop-blur-xl shadow-2xl shadow-indigo-500/10">
+          <h2 class="text-[11px] uppercase tracking-[0.35em] text-slate-300">How I work</h2>
+          <ul class="mt-5 space-y-4 text-[15px] text-slate-100/95">
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-400 ring-4 ring-indigo-400/15"></span>
+              <span>Translate fuzzy partner ecosystems into <strong class="text-white">clear segmentation and coverage</strong>.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-violet-400 ring-4 ring-violet-400/15"></span>
+              <span>Align cross-functional leaders on <strong class="text-white">motions, metrics, and trade-offs</strong>.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-cyan-300 ring-4 ring-cyan-300/15"></span>
+              <span>Stand alongside the frontline so strategy <strong class="text-white">lands in workflow</strong>.</span>
+            </li>
+          </ul>
+          <div class="mt-6 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+            <p class="text-[13px] uppercase tracking-[0.3em] text-slate-400 mb-2">Currently</p>
+            <p class="text-[15px] text-slate-200 leading-relaxed">
+              Leading partner-led GTM strategy for Dell's cybersecurity software portfolio &mdash; aligning five business units across Endpoint, Identity, and AI Security.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Strategy &middot; Operations &middot; Partnerships</p>
-      <h1 class="display">
-        Designing partner teams<br/>
-        <span class="muted">at the intersection of data and execution.</span>
-      </h1>
-      <p class="lede">
-        Hi, I'm Ashwyn — a strategy and operations professional based in Austin, TX.
-        I help global teams turn complex partner ecosystems into clear segmentation,
-        coverage, and execution plans that move the needle.
-      </p>
-      <div class="cta-row">
-        <a class="btn" href="#experience">View Experience</a>
-        <a class="btn ghost" href="mailto:ashwyn@utexas.edu">Get in touch</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- METRICS -->
-  <section class="metrics">
-    <div class="container metrics-grid">
-      <div class="metric">
-        <div class="metric-num">$375M</div>
-        <div class="metric-label">Incremental revenue unlocked for a Fortune 50 client</div>
-      </div>
-      <div class="metric">
-        <div class="metric-num">40+</div>
-        <div class="metric-label">AI vendors evaluated &amp; segmented for GTM prioritization</div>
-      </div>
-      <div class="metric">
-        <div class="metric-num">10x</div>
-        <div class="metric-label">Team scale-up led across Analytics, Tech, and Ops</div>
-      </div>
-      <div class="metric">
-        <div class="metric-num">9,600</div>
-        <div class="metric-label">Students reached scaling an early-stage ed-tech program</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="container two-col">
+<!-- ===================== METRICS STRIP ===================== -->
+<section class="relative -mt-12 z-10">
+  <div class="container mx-auto max-w-6xl px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-xl shadow-slate-900/5">
       <div>
-        <p class="section-tag">01 &mdash; About</p>
-        <h2>From data &mdash; to decisions &mdash; to delivery.</h2>
+        <div class="font-display text-3xl md:text-4xl font-semibold text-slate-900">$375M</div>
+        <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Revenue unlocked</div>
       </div>
-      <div class="prose">
-        <p>
-          I work where strategy meets operations: building segmentation frameworks,
-          partner GTM motions, and the day-to-day workflows that make them stick.
-          I've spent the last six years translating analytics into executive
-          recommendations &mdash; and then standing alongside the teams executing them.
+      <div>
+        <div class="font-display text-3xl md:text-4xl font-semibold text-slate-900">5 BUs</div>
+        <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Aligned at Dell</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl md:text-4xl font-semibold text-slate-900">10&times;</div>
+        <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Team scale-up led</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl md:text-4xl font-semibold text-slate-900">9,600</div>
+        <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Students reached</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAIN ===================== -->
+<main class="container mx-auto max-w-6xl px-6 py-20 md:py-28 space-y-16">
+
+  <!-- APPROACH -->
+  <section id="approach" class="rounded-3xl border border-slate-200 bg-white p-7 md:p-12 shadow-xl shadow-slate-900/5">
+    <div class="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
+      <div class="space-y-5">
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-600">Approach</span>
+        <h2 class="font-display text-3xl md:text-5xl font-semibold text-slate-900 leading-[1.05]">From data, to decisions, to delivery.</h2>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          I've spent six years translating analytics into executive recommendations &mdash; and then standing alongside the teams executing them. My sweet spot is where strategy meets the frontline: segmentation that informs coverage, coverage that becomes workflow, and workflow that shows up in the numbers.
         </p>
-        <p>
-          Today, I lead partner-led GTM strategy for Dell's cybersecurity software
-          portfolio, aligning five business units on coverage, engagement, and
-          investment across Endpoint, Identity, and AI Security.
+        <p class="text-lg text-slate-700 leading-relaxed">
+          I work best in ambiguous, multi-stakeholder environments &mdash; the kind where the answer isn't in a dashboard yet, and the path to it runs through five teams who don't agree on the question.
         </p>
+      </div>
+
+      <div class="grid gap-4">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500">Core focus</h3>
+          <p class="mt-3 font-semibold text-slate-900">Partner GTM &middot; Segmentation &middot; Operating cadence</p>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Designing the motions that align partners, sellers, and product to the same goal &mdash; and the rituals that keep them there.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500">Operating system</h3>
+          <ul class="mt-3 space-y-1.5 text-sm text-slate-700 list-disc list-inside marker:text-indigo-400">
+            <li>Evidence-first recommendations anchored in real customer behavior</li>
+            <li>Joint planning rituals across product, sales, and analytics</li>
+            <li>Operational pilots before full rollouts &mdash; measure, then scale</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500">Toolkit</h3>
+          <p class="mt-3 text-sm text-slate-700">SQL &middot; BI tools &middot; Partner segmentation modeling &middot; Service &amp; workflow design &middot; KPI frameworks &middot; AI/NLP for behavioral insight</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section alt">
-    <div class="container">
-      <p class="section-tag">02 &mdash; Experience</p>
-      <h2 class="section-title">Selected Work</h2>
+  <!-- CASE STUDIES -->
+  <section id="case-studies" class="rounded-3xl border border-slate-200 bg-white p-7 md:p-12 shadow-xl shadow-slate-900/5">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-600">Playbooks</span>
+        <h2 class="mt-4 font-display text-3xl md:text-5xl font-semibold text-slate-900 leading-[1.05]">Strategy that showed up in the P&amp;L.</h2>
+        <p class="mt-4 text-lg text-slate-700 max-w-2xl">Three stories from the last six years &mdash; how a fuzzy ask became a clear motion, and what changed on the ground because of it.</p>
+      </div>
+    </div>
 
-      <div class="timeline">
+    <div class="grid gap-6 md:grid-cols-3">
 
-        <article class="role">
-          <header class="role-head">
-            <div>
-              <h3>Dell Technologies</h3>
-              <p class="muted">Global Commodity Manager &mdash; Software Partnerships</p>
-            </div>
-            <div class="when">
-              <span>Austin, TX</span>
-              <span>Jun 2025 &mdash; Present</span>
-            </div>
-          </header>
-          <ul>
-            <li>Owned partner-led GTM strategy for Dell's cybersecurity software portfolio &mdash; aligning five business units on segmentation, coverage priorities, engagement motions, and investment roadmap across Endpoint, Identity, and AI Security.</li>
-            <li>Led executive business reviews with Tier-1 partners (e.g. CrowdStrike) to diagnose adoption and attach-rate gaps, driving frontline workflow changes that delivered an <strong>8% QoQ increase in license activation</strong> via extended PoS and upsell channels.</li>
-          </ul>
-        </article>
+      <article class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-900/5 transition hover:-translate-y-1.5 hover:shadow-2xl hover:border-indigo-200">
+        <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-slate-500">
+          <span>Dell &middot; 2025—Now</span>
+          <span class="text-indigo-600">Partner GTM</span>
+        </div>
+        <h3 class="mt-4 font-display text-xl font-semibold text-slate-900 leading-snug">Closing the activation gap with a Tier-1 cybersecurity partner</h3>
+        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+          Diagnosed why licenses were selling but not activating with CrowdStrike. Re-wired the frontline workflow across PoS and upsell channels &mdash; and turned a stuck metric into a quarterly trend.
+        </p>
+        <div class="mt-5 flex items-baseline gap-2 border-t border-slate-100 pt-4">
+          <span class="font-display text-2xl font-semibold text-slate-900">+8%</span>
+          <span class="text-xs text-slate-500 uppercase tracking-wider">QoQ activation lift</span>
+        </div>
+      </article>
 
-        <article class="role">
-          <header class="role-head">
-            <div>
-              <h3>Dell Technologies</h3>
-              <p class="muted">Global Operations Intern</p>
-            </div>
-            <div class="when">
-              <span>Austin, TX</span>
-              <span>Summer 2024</span>
-            </div>
-          </header>
-          <ul>
-            <li>Built a scalable partner evaluation and segmentation framework across <strong>40+ AI vendors</strong>, informing GTM prioritization and engagement models adopted by Product and Sales leaders.</li>
-          </ul>
-        </article>
+      <article class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-900/5 transition hover:-translate-y-1.5 hover:shadow-2xl hover:border-indigo-200">
+        <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-slate-500">
+          <span>ZS &middot; Fortune 50</span>
+          <span class="text-indigo-600">Analytics → Strategy</span>
+        </div>
+        <h3 class="mt-4 font-display text-xl font-semibold text-slate-900 leading-snug">Turning sales data into a $375M decision</h3>
+        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+          Owned the analytics and decision-support workstream for a Fortune 50 client. Translated terabytes of sales activity into a clear executive narrative &mdash; and a portfolio of bets leadership could fund.
+        </p>
+        <div class="mt-5 flex items-baseline gap-2 border-t border-slate-100 pt-4">
+          <span class="font-display text-2xl font-semibold text-slate-900">$375M</span>
+          <span class="text-xs text-slate-500 uppercase tracking-wider">Incremental revenue unlocked</span>
+        </div>
+      </article>
 
-        <article class="role">
-          <header class="role-head">
-            <div>
-              <h3>ZS Associates</h3>
-              <p class="muted">Associate Consultant</p>
-            </div>
-            <div class="when">
-              <span>Pune, India</span>
-              <span>2022 &mdash; 2023</span>
-            </div>
-          </header>
-          <ul>
-            <li>Spearheaded analytics and decision-support workstream for a Fortune 50 client, synthesizing large-scale sales data via SQL and BI tools into executive recommendations that unlocked <strong>$375M in incremental revenue</strong>.</li>
-            <li>Advised Sales and Marketing Directors of a leading Health Insurance firm through weekly operating reviews, surfacing <strong>$70M in growth opportunities</strong> and informing senior-level portfolio decisions.</li>
-            <li>Drove change management for a <strong>10x team scale-up</strong> across Analytics, Tech, and Ops &mdash; establishing execution norms, shared KPIs, and alignment mechanisms.</li>
-            <li>Partnered with data-science teams to deploy AI-driven patient interventions using social determinants of health data, improving adherence by <strong>16%</strong> and delivering <strong>$6.2M in cost savings</strong>.</li>
-            <li>Designed a segmentation-led engagement approach for a $5.4B specialty pharmacy, rebalancing spend (<strong>-34%</strong>) while supporting a four-year, $4.4M annual client renewal.</li>
-            <li>Applied AI/NLP techniques to identify churn drivers and refine retention actions, reducing campaign effort by <strong>21%</strong>.</li>
-          </ul>
-        </article>
+      <article class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-900/5 transition hover:-translate-y-1.5 hover:shadow-2xl hover:border-indigo-200">
+        <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-slate-500">
+          <span>ZS &middot; Healthcare</span>
+          <span class="text-indigo-600">AI for outcomes</span>
+        </div>
+        <h3 class="mt-4 font-display text-xl font-semibold text-slate-900 leading-snug">Patient interventions that actually moved adherence</h3>
+        <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+          Partnered with data science to deploy AI-driven interventions using social determinants of health. Designed the pilot, the evaluation, and the rollout &mdash; not just the model.
+        </p>
+        <div class="mt-5 flex items-baseline gap-2 border-t border-slate-100 pt-4">
+          <span class="font-display text-2xl font-semibold text-slate-900">+16%</span>
+          <span class="text-xs text-slate-500 uppercase tracking-wider">Adherence &middot; $6.2M saved</span>
+        </div>
+      </article>
 
-        <article class="role">
-          <header class="role-head">
-            <div>
-              <h3>ZS Associates</h3>
-              <p class="muted">Associate &mdash; Decision Analytics</p>
-            </div>
-            <div class="when">
-              <span>Pune, India</span>
-              <span>2019 &mdash; 2021</span>
-            </div>
-          </header>
-          <ul>
-            <li>Redesigned incentive and performance frameworks to align frontline sales behavior, driving <strong>4% quarterly sales growth</strong>.</li>
-            <li>Executed a new metric sales competition, achieving an unprecedented <strong>12% quarterly surge</strong> in new physician acquisitions.</li>
-          </ul>
-        </article>
+    </div>
 
-        <article class="role">
-          <header class="role-head">
-            <div>
-              <h3>Kidovators by GyanLab</h3>
-              <p class="muted">Program Consultant &amp; Business Development Lead</p>
-            </div>
-            <div class="when">
-              <span>Bangalore, India</span>
-              <span>2018 &mdash; 2019</span>
-            </div>
-          </header>
-          <ul>
-            <li>Designed and operated core GTM and service workflows &mdash; lead intake, CRM, onboarding, renewals &mdash; increasing customer engagement by <strong>22%</strong> and scaling reach to <strong>9,600 students</strong> across K&ndash;10 schools.</li>
-            <li>Built and iterated tiered pricing and service offerings based on adoption signals, driving <strong>17% growth</strong> in market penetration.</li>
-          </ul>
-        </article>
+    <div class="mt-10 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-dashed border-slate-200 p-5">
+        <p class="font-display text-lg font-semibold text-slate-900">Scaled a team 10&times;</p>
+        <p class="mt-1 text-sm text-slate-600">Built the execution norms, shared KPIs, and rituals that held a fast-growing org together.</p>
+      </div>
+      <div class="rounded-xl border border-dashed border-slate-200 p-5">
+        <p class="font-display text-lg font-semibold text-slate-900">$70M of growth surfaced</p>
+        <p class="mt-1 text-sm text-slate-600">Weekly operating reviews with a leading health insurer &mdash; informing senior portfolio decisions.</p>
+      </div>
+      <div class="rounded-xl border border-dashed border-slate-200 p-5">
+        <p class="font-display text-lg font-semibold text-slate-900">-34% spend, same performance</p>
+        <p class="mt-1 text-sm text-slate-600">Segmentation-led engagement model for a $5.4B specialty pharmacy. Supported a $4.4M annual renewal.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience" class="rounded-3xl border border-slate-200 bg-white p-7 md:p-12 shadow-xl shadow-slate-900/5">
+    <div class="grid gap-12 md:grid-cols-[1fr_1.4fr]">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-600">Experience</span>
+        <h2 class="mt-4 font-display text-3xl md:text-4xl font-semibold text-slate-900 leading-[1.1]">A path built across analytics, consulting &amp; partnerships.</h2>
+        <p class="mt-4 text-slate-700 leading-relaxed">
+          From a Bangalore ed-tech startup to a Fortune 50 client portfolio to Dell's global partner team &mdash; the throughline is the same: take what's complex, make it executable, and ship.
+        </p>
+      </div>
+
+      <div class="relative pl-6 md:pl-8 border-l-2 border-slate-200 space-y-10">
+        <div class="relative">
+          <span class="absolute -left-[34px] md:-left-[42px] top-2 h-3 w-3 rounded-full bg-indigo-500 ring-4 ring-indigo-100"></span>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-slate-500">Jun 2025 — Present &middot; Austin, TX</p>
+          <h3 class="mt-1 font-display text-xl font-semibold text-slate-900">Dell Technologies &middot; Global Commodity Manager, Software Partnerships</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Owning partner-led GTM strategy for Dell's cybersecurity software portfolio. Aligning five business units on segmentation, coverage, engagement motions, and investment roadmap across Endpoint, Identity, and AI Security.</p>
+        </div>
+
+        <div class="relative">
+          <span class="absolute -left-[34px] md:-left-[42px] top-2 h-3 w-3 rounded-full bg-indigo-500 ring-4 ring-indigo-100"></span>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-slate-500">Summer 2024 &middot; Austin, TX</p>
+          <h3 class="mt-1 font-display text-xl font-semibold text-slate-900">Dell Technologies &middot; Global Operations Intern</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Built a scalable partner evaluation and segmentation framework across 40+ AI vendors &mdash; adopted by Product and Sales leaders for GTM prioritization.</p>
+        </div>
+
+        <div class="relative">
+          <span class="absolute -left-[34px] md:-left-[42px] top-2 h-3 w-3 rounded-full bg-violet-500 ring-4 ring-violet-100"></span>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-slate-500">2019 — 2023 &middot; Pune, India</p>
+          <h3 class="mt-1 font-display text-xl font-semibold text-slate-900">ZS Associates &middot; Associate Consultant → Decision Analytics</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Four years across pharma, health insurance, and specialty pharmacy. Analytics workstreams, change management for a 10&times; scale-up, AI/NLP applications for churn and adherence, and segmentation models that rebalanced spend without losing performance.</p>
+        </div>
+
+        <div class="relative">
+          <span class="absolute -left-[34px] md:-left-[42px] top-2 h-3 w-3 rounded-full bg-cyan-500 ring-4 ring-cyan-100"></span>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-slate-500">2018 — 2019 &middot; Bangalore, India</p>
+          <h3 class="mt-1 font-display text-xl font-semibold text-slate-900">Kidovators by GyanLab &middot; Program Consultant &amp; BD Lead</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">An 11-person ed-tech startup. Designed the GTM and service workflows from scratch &mdash; lead intake to renewals &mdash; and scaled program reach to 9,600 K&ndash;10 students with tiered pricing built from adoption signals.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EDUCATION -->
-  <section id="education" class="section">
-    <div class="container">
-      <p class="section-tag">03 &mdash; Education</p>
-      <h2 class="section-title">Education</h2>
-
-      <div class="edu-grid">
-        <article class="edu">
-          <h3>The University of Texas at Austin</h3>
-          <p class="muted">McCombs School of Business &mdash; Austin, TX &middot; May 2025</p>
-          <p><strong>MBA, Strategy and Innovation</strong> <span class="pill">Merit Scholarship</span></p>
-          <ul>
-            <li>VP of Career &amp; Alumni Relations, International MBAs</li>
-            <li>Peer Career Coach &mdash; Graduate Consulting Group, Wellness Club</li>
-            <li>Marketing Fellow (24 of 250) &mdash; advised H-E-B on "Future of Meals"</li>
-          </ul>
-        </article>
-
-        <article class="edu">
-          <h3>Manipal Academy of Higher Education</h3>
-          <p class="muted">MIT, Manipal, India &middot; July 2018</p>
-          <p><strong>B.Tech, Electronics and Communication</strong></p>
-          <ul>
-            <li>Co-founder &amp; Convener &mdash; National Level Debate Tournament</li>
-            <li>Crew Lead &mdash; The Manipal Speaker Conclave</li>
-          </ul>
-        </article>
+  <section class="grid gap-6 md:grid-cols-2">
+    <article class="rounded-3xl border border-slate-200 bg-white p-7 md:p-9 shadow-xl shadow-slate-900/5">
+      <div class="flex items-start justify-between">
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-600">MBA</span>
+        <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-700 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]">Merit Scholarship</span>
       </div>
-    </div>
+      <h3 class="mt-4 font-display text-2xl font-semibold text-slate-900">UT Austin &middot; McCombs School of Business</h3>
+      <p class="mt-1 text-sm text-slate-500">MBA, Strategy and Innovation &middot; May 2025</p>
+      <ul class="mt-4 space-y-1.5 text-sm text-slate-700 list-disc list-inside marker:text-indigo-400">
+        <li>VP of Career &amp; Alumni Relations, International MBAs</li>
+        <li>Peer Career Coach &mdash; Graduate Consulting Group &amp; Wellness Club</li>
+        <li>Marketing Fellow (24 of 250) &mdash; advised H-E-B on the "Future of Meals"</li>
+      </ul>
+    </article>
+
+    <article class="rounded-3xl border border-slate-200 bg-white p-7 md:p-9 shadow-xl shadow-slate-900/5">
+      <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-600">Undergrad</span>
+      <h3 class="mt-4 font-display text-2xl font-semibold text-slate-900">Manipal Academy of Higher Education</h3>
+      <p class="mt-1 text-sm text-slate-500">B.Tech, Electronics &amp; Communication &middot; July 2018</p>
+      <ul class="mt-4 space-y-1.5 text-sm text-slate-700 list-disc list-inside marker:text-indigo-400">
+        <li>Co-founder &amp; Convener &mdash; National Level Debate Tournament</li>
+        <li>Crew Lead &mdash; The Manipal Speaker Conclave</li>
+      </ul>
+    </article>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section alt">
-    <div class="container">
-      <p class="section-tag">04 &mdash; Toolkit</p>
-      <h2 class="section-title">Skills &amp; Interests</h2>
-
-      <div class="skills-grid">
-        <div>
-          <h4>Strategy &amp; Operations</h4>
-          <ul class="tags">
-            <li>Partner segmentation</li>
-            <li>GTM strategy</li>
-            <li>Service &amp; workflow design</li>
-            <li>Operational pilots</li>
-            <li>KPI tracking</li>
-            <li>Change management</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Data &amp; Analytics</h4>
-          <ul class="tags">
-            <li>SQL</li>
-            <li>BI tools</li>
-            <li>Data analysis</li>
-            <li>AI / NLP</li>
-            <li>Segmentation modeling</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Beyond work</h4>
-          <ul class="tags">
-            <li>Poetry</li>
-            <li>Concerts</li>
-            <li>Formula 1</li>
-            <li>Culinary hosting</li>
-            <li>Mixology</li>
-            <li>Social games</li>
-          </ul>
-        </div>
-      </div>
+  <!-- BEYOND WORK -->
+  <section class="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 text-white p-7 md:p-12 shadow-2xl">
+    <span class="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-200">Off the clock</span>
+    <h2 class="mt-4 font-display text-3xl md:text-4xl font-semibold leading-[1.1] max-w-3xl">When I'm not building partner motions&hellip;</h2>
+    <p class="mt-4 text-slate-300 max-w-3xl">
+      I write poetry, host dinners I take far too seriously, mix the next cocktail, follow Formula 1 too closely, and lose graciously at most social games. The common thread &mdash; people, craft, and a good story.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Poetry</span>
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Concerts</span>
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Formula 1</span>
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Culinary hosting</span>
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Mixology</span>
+      <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-slate-200">Social games</span>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section contact">
-    <div class="container contact-inner">
-      <p class="section-tag">05 &mdash; Contact</p>
-      <h2 class="display">Let's talk.</h2>
-      <p class="lede">
-        Open to Strategy &amp; Operations roles. Authorized to work in the US &middot; valid H-1B visa.
-      </p>
-      <div class="contact-grid">
-        <a href="mailto:ashwyn@utexas.edu">
-          <span class="c-label">Email</span>
-          <span class="c-value">ashwyn@utexas.edu</span>
+  <section id="contact" class="rounded-3xl border border-slate-200 bg-white p-7 md:p-12 shadow-xl shadow-slate-900/5">
+    <div class="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-600">Let's talk</span>
+        <h2 class="mt-4 font-display text-3xl md:text-5xl font-semibold text-slate-900 leading-[1.05]">Let's build the next chapter.</h2>
+        <p class="mt-4 text-lg text-slate-700 leading-relaxed max-w-xl">
+          I'm open to Strategy &amp; Operations roles where partner motions, segmentation, and operating cadence are the hard problem &mdash; and the difference will show up in the numbers.
+        </p>
+        <p class="mt-3 text-sm text-slate-500">Based in Austin, TX &middot; Authorized to work in the US &middot; Valid H-1B visa.</p>
+      </div>
+      <div class="grid gap-3">
+        <a href="mailto:ashwyn@utexas.edu" class="group flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 hover:bg-slate-900 hover:text-white transition">
+          <span>
+            <span class="block text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-slate-300">Email</span>
+            <span class="font-display text-lg font-semibold">ashwyn@utexas.edu</span>
+          </span>
+          <span class="text-xl">&rarr;</span>
         </a>
-        <a href="tel:+17373428178">
-          <span class="c-label">Phone</span>
-          <span class="c-value">(737) 342-8178</span>
+        <a href="tel:+17373428178" class="group flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 hover:bg-slate-900 hover:text-white transition">
+          <span>
+            <span class="block text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-slate-300">Phone</span>
+            <span class="font-display text-lg font-semibold">(737) 342-8178</span>
+          </span>
+          <span class="text-xl">&rarr;</span>
         </a>
-        <a href="https://linkedin.com/in/ashwyn30/" target="_blank" rel="noopener">
-          <span class="c-label">LinkedIn</span>
-          <span class="c-value">linkedin.com/in/ashwyn30</span>
+        <a href="https://linkedin.com/in/ashwyn30/" target="_blank" rel="noopener" class="group flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 hover:bg-slate-900 hover:text-white transition">
+          <span>
+            <span class="block text-[10px] uppercase tracking-[0.3em] text-slate-500 group-hover:text-slate-300">LinkedIn</span>
+            <span class="font-display text-lg font-semibold">linkedin.com/in/ashwyn30</span>
+          </span>
+          <span class="text-xl">&rarr;</span>
         </a>
       </div>
     </div>
@@ -293,10 +382,10 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <span>&copy; <span id="year"></span> Ashwyn</span>
-    <a href="#top">Back to top &uarr;</a>
+<footer class="bg-slate-950 text-slate-400">
+  <div class="container mx-auto max-w-6xl px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+    <p>&copy; <span id="year"></span> Ashwyn Kumar &middot; Built with care.</p>
+    <a href="#top" class="hover:text-white transition">Back to top &uarr;</a>
   </div>
 </footer>
 
