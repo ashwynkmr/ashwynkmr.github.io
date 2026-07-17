@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashwyn Kumar — Strategy that ships.</title>
+<meta name="description" content="Strategy & Operations leader in Austin. I turn partner ecosystems into engines of growth — and enjoy Formula 1, poetry, and a perfectly balanced Negroni along the way." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui'],
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          ink: '#0a0a0a',
+          cream: '#f5f2ea',
+          rust: '#c85a3e',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --cream: #f5f2ea;
+    --rust: #c85a3e;
+    --lime: #d4f542;
+    --violet: #7c5ce0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; cursor: none; }
+  .font-display { font-family: 'Fraunces', serif; letter-spacing: -0.03em; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Custom cursor */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    border-radius: 50%; transform: translate(-50%, -50%);
+    transition: opacity 0.2s;
+  }
+  .cursor-dot {
+    width: 8px; height: 8px; background: var(--ink);
+    transition: transform 0.1s ease-out;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px; border: 1.5px solid var(--ink);
+    transition: transform 0.3s ease-out, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: difference;
+    filter: invert(1);
+  }
+  .cursor-hover .cursor-ring {
+    width: 70px; height: 70px; background: var(--rust); border-color: var(--rust);
+  }
+  @media (max-width: 900px) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+  a, button, [data-cursor="hover"] { cursor: none; }
+  @media (max-width: 900px) { a, button, [data-cursor="hover"] { cursor: pointer; } }
+
+  /* Scroll progress bar */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--rust), var(--violet));
+    width: 0%; z-index: 100; transition: width 0.1s;
+  }
+
+  /* Grain overlay for tactile feel */
+  .grain::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.35; mix-blend-mode: multiply;
+  }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Marquee */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
+  .marquee-pause:hover .marquee-track { animation-play-state: paused; }
+
+  /* Floating orbs in hero */
+  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-40px) scale(1.15); } }
+  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,30px) scale(0.9); } }
+  .orb-1 { animation: float1 12s ease-in-out infinite; }
+  .orb-2 { animation: float2 16s ease-in-out infinite; }
+
+  /* Case study card */
+  .case-card { position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .case-card:hover { transform: translateY(-8px); }
+  .case-card .case-image { transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease; }
+  .case-card:hover .case-image { transform: scale(1.08); filter: brightness(0.55) saturate(0.6); }
+  .case-reveal { position: absolute; inset: 0; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; color: white; opacity: 0; transform: translateY(30px); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .case-card:hover .case-reveal { opacity: 1; transform: translateY(0); }
+
+  /* Philosophy card flip */
+  .philo { perspective: 1200px; }
+  .philo-inner { position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .philo:hover .philo-inner { transform: rotateY(180deg); }
+  .philo-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .philo-back { transform: rotateY(180deg); }
+
+  /* Hobby polaroid tilt */
+  .polaroid { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .polaroid:hover { transform: translateY(-10px) rotate(0deg) scale(1.05) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.15); z-index: 5; }
+
+  /* Timeline dot pulse */
+  @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(200,90,62,0.5); } 50% { box-shadow: 0 0 0 10px rgba(200,90,62,0); } }
+  .pulse { animation: pulse-dot 2s infinite; }
+
+  /* Marquee text underline hover */
+  .link-underline { position: relative; }
+  .link-underline::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Blob */
+  .blob { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; animation: morph 8s ease-in-out infinite; }
+  @keyframes morph {
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    50% { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; }
+  }
+
+  /* Now playing widget */
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .vinyl { animation: spin 6s linear infinite; }
+
+  /* Text stroke */
+  .text-stroke { -webkit-text-stroke: 1.5px var(--ink); color: transparent; }
+
+  /* Number tag rotate on hover */
+  .num-tag { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .num-tag:hover { transform: rotate(-8deg) scale(1.1); }
+
+  /* Konami hint */
+  .konami-hint { opacity: 0.4; transition: opacity 0.3s; }
+  .konami-hint:hover { opacity: 1; }
+</style>
+</head>
+<body class="grain">
+
+<div class="cursor-ring"></div>
+<div class="cursor-dot"></div>
+<div class="progress"></div>
+
+<!-- ============== NAV ============== -->
+<header class="fixed top-0 inset-x-0 z-40 mix-blend-difference">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between text-white">
+    <a href="#top" class="font-display text-2xl font-semibold" data-cursor="hover">Ashwyn<span class="text-rust">.</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#work" class="link-underline" data-cursor="hover">Work</a>
+      <a href="#playbooks" class="link-underline" data-cursor="hover">Playbooks</a>
+      <a href="#philosophy" class="link-underline" data-cursor="hover">Philosophy</a>
+      <a href="#offclock" class="link-underline" data-cursor="hover">Off the clock</a>
+      <a href="#contact" class="link-underline" data-cursor="hover">Contact</a>
+    </nav>
+    <a href="mailto:ashwyn@utexas.edu" class="hidden md:inline-flex items-center gap-2 rounded-full border border-white/60 px-4 py-2 text-sm hover:bg-white hover:text-ink transition" data-cursor="hover">
+      <span class="w-1.5 h-1.5 rounded-full bg-green-400 pulse"></span>
+      Available for coffee
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============== HERO ============== -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- floating orbs -->
+    <div class="orb-1 absolute -top-32 -left-40 w-[500px] h-[500px] blob bg-gradient-to-br from-orange-300/60 to-rust/40 blur-3xl"></div>
+    <div class="orb-2 absolute -bottom-40 -right-20 w-[600px] h-[600px] blob bg-gradient-to-br from-violet-300/50 to-blue-300/40 blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32 grid md:grid-cols-[1.4fr_1fr] gap-16 items-center w-full">
+      <div class="space-y-8">
+        <div class="flex items-center gap-3 font-mono text-xs text-ink/60">
+          <span class="w-2 h-2 rounded-full bg-rust animate-ping"></span>
+          <span>AUSTIN, TX &middot; 07:42 CT</span>
+        </div>
+
+        <h1 class="font-display text-[clamp(3rem,10vw,8.5rem)] font-medium leading-[0.88] tracking-tight">
+          I make<br/>
+          <span class="italic">strategy</span><br/>
+          <span class="text-stroke">actually</span><br/>
+          ship.<span class="text-rust">*</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-ink/70 max-w-xl leading-relaxed">
+          <span class="font-mono text-xs text-rust">* not a PowerPoint promise</span><br/>
+          I'm Ashwyn — a Strategy &amp; Operations leader who lives at the seam
+          between spreadsheets and stand-ups. Currently turning Dell's cybersecurity
+          partner ecosystem into an engine of growth. Previously, at ZS Associates,
+          I helped Fortune 50 clients turn terabytes of sales data into
+          <em class="font-display">decisions their boards could fund</em>.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#playbooks" class="group inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 rounded-full font-medium hover:bg-rust transition" data-cursor="hover">
+            See the playbooks
+            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+          </a>
+          <a href="#philosophy" class="link-underline font-medium" data-cursor="hover">Or read how I think &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Photo mosaic + "currently" widget -->
+      <div class="relative grid grid-cols-2 gap-3 md:gap-4">
+        <div class="col-span-2 aspect-[4/3] rounded-3xl overflow-hidden bg-ink/5 relative group" data-cursor="hover">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80&auto=format&fit=crop"
+               alt="Whiteboard strategy session"
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+               onerror="this.src='https://picsum.photos/seed/strategy/900/600'"/>
+          <div class="absolute top-4 left-4 bg-cream/95 rounded-full px-3 py-1 font-mono text-[10px] tracking-widest">
+            NOW &middot; DELL SOFTWARE PARTNERSHIPS
+          </div>
+        </div>
+        <div class="aspect-square rounded-3xl overflow-hidden bg-ink/5">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop"
+               alt="Data on a screen"
+               class="w-full h-full object-cover"
+               onerror="this.src='https://picsum.photos/seed/data/500/500'"/>
+        </div>
+        <div class="aspect-square rounded-3xl bg-ink text-cream p-5 flex flex-col justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-rust vinyl flex items-center justify-center">
+              <div class="w-1.5 h-1.5 rounded-full bg-cream"></div>
+            </div>
+            <span class="font-mono text-[10px] tracking-widest opacity-70">NOW SPINNING</span>
+          </div>
+          <div>
+            <p class="font-display text-lg leading-tight">The Bear<br/><span class="text-cream/60 text-sm font-sans">— season 4, obviously</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-xs text-ink/50 flex flex-col items-center gap-2 konami-hint">
+      <span>scroll, or try &uarr;&uarr;&darr;&darr;&larr;&rarr;&larr;&rarr;BA</span>
+      <div class="w-px h-8 bg-ink/30"></div>
+    </div>
+  </section>
+
+  <!-- ============== MARQUEE ============== -->
+  <section class="border-y-2 border-ink py-6 bg-ink text-cream overflow-hidden marquee-pause">
+    <div class="marquee-track whitespace-nowrap">
+      <span class="font-display text-3xl md:text-5xl italic px-8">Partner GTM</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl px-8">Segmentation</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl italic px-8">Executive Storytelling</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl px-8">Operational Cadence</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl italic px-8">Change Management</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <!-- duplicate for seamless -->
+      <span class="font-display text-3xl md:text-5xl italic px-8">Partner GTM</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl px-8">Segmentation</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl italic px-8">Executive Storytelling</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl px-8">Operational Cadence</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-3xl md:text-5xl italic px-8">Change Management</span>
+      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT / STORY ============== -->
+  <section id="about" class="py-28 md:py-40 relative">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-[1fr_1.4fr] gap-16">
+      <div class="reveal">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">01 &mdash; THE THROUGHLINE</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
+          Six years,<br/>
+          three continents,<br/>
+          <span class="italic">one obsession.</span>
+        </h2>
+      </div>
+      <div class="reveal space-y-6 text-lg text-ink/75 leading-relaxed">
+        <p>
+          I started my career in a Bangalore ed-tech startup with eleven people
+          and a Google Sheet for a CRM. I ended up at Dell's global partner team
+          in Austin, aligning five business units on how we sell cybersecurity to
+          the Fortune 500.
+        </p>
+        <p>
+          Different industries, different scales, different rooms &mdash; the same
+          job. <strong>Take what's complicated. Make it executable. Ship it.</strong>
+        </p>
+        <p>
+          The best strategies I've been part of weren't the smartest ones. They
+          were the ones where the frontline knew what to do on Monday morning,
+          and someone was measuring whether it worked by Friday.
+        </p>
+        <div class="pt-4 flex items-center gap-4">
+          <div class="w-14 h-14 rounded-full bg-rust/20 flex items-center justify-center">
+            <div class="w-3 h-3 rounded-full bg-rust"></div>
+          </div>
+          <p class="font-display italic text-xl">&mdash; if it can't be executed on a Tuesday, it's not a strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== METRICS ============== -->
+  <section class="py-24 bg-ink text-cream relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="font-mono text-xs tracking-widest text-rust mb-4 reveal">02 &mdash; RECEIPTS</p>
+      <h2 class="font-display text-4xl md:text-6xl mb-16 reveal">
+        Because talk is cheap. <span class="italic text-cream/50">Numbers aren't.</span>
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="reveal">
+          <div class="font-display text-6xl md:text-8xl font-medium counter" data-target="375">0</div>
+          <div class="mt-3 text-cream/60 text-sm">Million dollars in revenue unlocked at ZS for a Fortune 50 client</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display text-6xl md:text-8xl font-medium counter" data-target="9600">0</div>
+          <div class="mt-3 text-cream/60 text-sm">K–10 students reached scaling an early-stage ed-tech program</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display text-6xl md:text-8xl font-medium">
+            <span class="counter" data-target="10">0</span><span class="text-rust">×</span>
+          </div>
+          <div class="mt-3 text-cream/60 text-sm">Team scale-up led across Analytics, Tech &amp; Ops</div>
+        </div>
+        <div class="reveal">
+          <div class="font-display text-6xl md:text-8xl font-medium">
+            <span class="counter" data-target="16">0</span><span class="text-rust">%</span>
+          </div>
+          <div class="mt-3 text-cream/60 text-sm">Adherence lift from AI-driven patient interventions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PLAYBOOKS / CASE STUDIES ============== -->
+  <section id="playbooks" class="py-28 md:py-40">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal max-w-3xl mb-16">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">03 &mdash; PLAYBOOKS</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
+          Six stories,<br/>
+          <span class="italic">told the way</span><br/>
+          they actually happened.
+        </h2>
+        <p class="mt-6 text-lg text-ink/70">Not the polished deck version. The messy-middle version.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5 auto-rows-[220px] md:auto-rows-[300px]">
+
+        <!-- Case 1: Dell CrowdStrike (large) -->
+        <article class="case-card md:col-span-4 md:row-span-2 rounded-3xl bg-ink" data-cursor="hover">
+          <div class="absolute inset-0">
+            <img class="case-image w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80&auto=format&fit=crop"
+                 alt="Cybersecurity server room"
+                 onerror="this.src='https://picsum.photos/seed/cyber/1200/800'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+          </div>
+          <div class="relative h-full p-8 md:p-10 flex flex-col justify-end text-cream">
+            <span class="font-mono text-xs tracking-widest text-rust mb-3">DELL &middot; 2025 &mdash; NOW</span>
+            <h3 class="font-display text-3xl md:text-5xl leading-tight max-w-2xl">
+              How a stuck activation metric became a<br/><em>quarterly upward trend.</em>
+            </h3>
+          </div>
+          <div class="case-reveal bg-ink/95">
+            <p class="font-mono text-xs tracking-widest text-rust mb-3">THE STORY</p>
+            <p class="text-cream/90 leading-relaxed mb-4 max-w-2xl">
+              CrowdStrike licenses were selling. They weren't activating. Everyone had a theory.
+              I ran a diagnostic across PoS and upsell channels, found the drop-off wasn't
+              product &mdash; it was workflow. Redesigned the frontline motion with sales ops,
+              got the executive review to commit, shipped in six weeks.
+            </p>
+            <div class="flex items-baseline gap-3 border-t border-cream/20 pt-4">
+              <span class="font-display text-4xl text-rust">+8%</span>
+              <span class="text-cream/60 text-sm">QoQ activation lift &middot; measurable within one quarter</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case 2: ZS Fortune 50 -->
+        <article class="case-card md:col-span-2 md:row-span-1 rounded-3xl bg-cream border-2 border-ink" data-cursor="hover">
+          <div class="absolute inset-0">
+            <img class="case-image w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&q=80&auto=format&fit=crop"
+                 alt="Analytics dashboards"
+                 onerror="this.src='https://picsum.photos/seed/dash/800/500'"/>
+          </div>
+          <div class="relative h-full p-6 flex flex-col justify-end">
+            <span class="font-mono text-xs tracking-widest text-rust mb-2 bg-cream/95 self-start px-2 py-1 rounded">ZS &middot; FORTUNE 50</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug text-ink bg-cream/95 self-start px-2 rounded">
+              Turning sales data<br/>into a <em>$375M</em> decision.
+            </h3>
+          </div>
+          <div class="case-reveal bg-rust text-cream">
+            <p class="font-mono text-[10px] tracking-widest mb-2">OUTCOME</p>
+            <p class="font-display text-3xl mb-2">$375M unlocked</p>
+            <p class="text-cream/90 text-sm">Analytics that made the executive narrative writable in one paragraph &mdash; and fundable in one meeting.</p>
+          </div>
+        </article>
+
+        <!-- Case 3: Healthcare AI -->
+        <article class="case-card md:col-span-2 md:row-span-1 rounded-3xl bg-ink" data-cursor="hover">
+          <div class="absolute inset-0">
+            <img class="case-image w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format&fit=crop"
+                 alt="Healthcare and medicine"
+                 onerror="this.src='https://picsum.photos/seed/health/800/500'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent"></div>
+          </div>
+          <div class="relative h-full p-6 flex flex-col justify-end text-cream">
+            <span class="font-mono text-xs tracking-widest text-rust mb-2">ZS &middot; HEALTHCARE</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug">
+              AI interventions that <em>actually</em> moved adherence.
+            </h3>
+          </div>
+          <div class="case-reveal bg-violet-600">
+            <p class="font-mono text-[10px] tracking-widest mb-2">OUTCOME</p>
+            <p class="font-display text-3xl mb-2">+16% &middot; $6.2M</p>
+            <p class="text-cream/90 text-sm">Built the pilot, the eval, and the rollout &mdash; not just the model.</p>
+          </div>
+        </article>
+
+        <!-- Case 4: Specialty Pharma -->
+        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-cream border-2 border-ink" data-cursor="hover">
+          <div class="absolute inset-0">
+            <img class="case-image w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=900&q=80&auto=format&fit=crop"
+                 alt="Pharmacy medications"
+                 onerror="this.src='https://picsum.photos/seed/pharma/900/500'"/>
+          </div>
+          <div class="relative h-full p-6 flex flex-col justify-end">
+            <span class="font-mono text-xs tracking-widest text-rust mb-2 bg-cream/95 self-start px-2 py-1 rounded">ZS &middot; $5.4B SPECIALTY PHARMA</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug text-ink bg-cream/95 self-start px-2 rounded">
+              −34% spend, same performance.
+            </h3>
+          </div>
+          <div class="case-reveal bg-ink">
+            <p class="text-cream/90 leading-relaxed">Segmentation-led engagement approach that let leadership rebalance spend without losing coverage. Supported a four-year, $4.4M annual client renewal.</p>
+          </div>
+        </article>
+
+        <!-- Case 5: Kidovators -->
+        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-rust text-cream" data-cursor="hover">
+          <div class="absolute inset-0 opacity-70">
+            <img class="case-image w-full h-full object-cover mix-blend-multiply"
+                 src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80&auto=format&fit=crop"
+                 alt="Kids learning"
+                 onerror="this.src='https://picsum.photos/seed/kids/900/500'"/>
+          </div>
+          <div class="relative h-full p-6 flex flex-col justify-end">
+            <span class="font-mono text-xs tracking-widest opacity-80 mb-2">KIDOVATORS &middot; 2018 &mdash; 2019</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug">
+              0 to 9,600 students on a <em>11-person</em> team.
+            </h3>
+          </div>
+          <div class="case-reveal bg-ink">
+            <p class="text-cream/90 leading-relaxed">Designed the GTM and service workflows from scratch &mdash; lead intake, CRM, onboarding, renewals &mdash; then tiered pricing built from adoption signals. +22% engagement, +17% market penetration.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PHILOSOPHY ============== -->
+  <section id="philosophy" class="py-28 md:py-40 bg-cream relative overflow-hidden">
+    <div class="orb-1 absolute top-40 -right-40 w-96 h-96 blob bg-gradient-to-br from-lime/40 to-cyan-300/30 blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="reveal max-w-3xl mb-20">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">04 &mdash; HOW I THINK</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
+          Four things I believe<br/>
+          <span class="italic">that show up in the work.</span>
+        </h2>
+        <p class="mt-4 text-ink/60 font-mono text-sm">tap or hover a card to flip &rarr;</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="philo h-80 reveal" data-cursor="hover">
+          <div class="philo-inner w-full h-full">
+            <div class="philo-face bg-ink text-cream rounded-3xl p-10 flex flex-col justify-between">
+              <span class="font-mono text-xs tracking-widest text-rust">01</span>
+              <div>
+                <h3 class="font-display text-3xl md:text-4xl leading-tight">Strategy that can't survive contact with the frontline isn't strategy.</h3>
+                <p class="mt-4 text-cream/60 text-sm">It's a PowerPoint.</p>
+              </div>
+            </div>
+            <div class="philo-face philo-back bg-rust text-cream rounded-3xl p-10 flex flex-col justify-center">
+              <p class="text-lg leading-relaxed">The best test of a strategy isn't the exec approval &mdash; it's whether a sales rep or ops manager can act on it Monday morning without asking three questions. Everything else is a whiteboard exercise.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="philo h-80 reveal" data-cursor="hover">
+          <div class="philo-inner w-full h-full">
+            <div class="philo-face bg-cream border-2 border-ink rounded-3xl p-10 flex flex-col justify-between">
+              <span class="font-mono text-xs tracking-widest text-rust">02</span>
+              <div>
+                <h3 class="font-display text-3xl md:text-4xl leading-tight">The right answer is usually a mile away from the loudest voice in the room.</h3>
+                <p class="mt-4 text-ink/60 text-sm">Data is a great equalizer.</p>
+              </div>
+            </div>
+            <div class="philo-face philo-back bg-violet-600 text-cream rounded-3xl p-10 flex flex-col justify-center">
+              <p class="text-lg leading-relaxed">I've seen $70M growth opportunities missed because a senior VP was sure about a customer segment. Numbers don't care about tenure. My job is often to bring the number, translate what it means, and stay in the room while everyone re-adjusts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="philo h-80 reveal" data-cursor="hover">
+          <div class="philo-inner w-full h-full">
+            <div class="philo-face bg-lime rounded-3xl p-10 flex flex-col justify-between" style="background:#d4f542">
+              <span class="font-mono text-xs tracking-widest text-ink/70">03</span>
+              <div>
+                <h3 class="font-display text-3xl md:text-4xl leading-tight text-ink">Pilots beat plans. Every time.</h3>
+                <p class="mt-4 text-ink/60 text-sm">Measure. Then scale.</p>
+              </div>
+            </div>
+            <div class="philo-face philo-back bg-ink text-cream rounded-3xl p-10 flex flex-col justify-center">
+              <p class="text-lg leading-relaxed">I default to small operational pilots before big rollouts. Not because I'm risk-averse &mdash; because a two-week pilot with real customers tells you more than a two-month planning cycle. The cost of a small failure is the tuition for a big win.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="philo h-80 reveal" data-cursor="hover">
+          <div class="philo-inner w-full h-full">
+            <div class="philo-face bg-ink text-cream rounded-3xl p-10 flex flex-col justify-between">
+              <span class="font-mono text-xs tracking-widest text-rust">04</span>
+              <div>
+                <h3 class="font-display text-3xl md:text-4xl leading-tight">Partnerships are people, not org charts.</h3>
+                <p class="mt-4 text-cream/60 text-sm">You either build the relationship or you don't have one.</p>
+              </div>
+            </div>
+            <div class="philo-face philo-back bg-orange-300 text-ink rounded-3xl p-10 flex flex-col justify-center">
+              <p class="text-lg leading-relaxed">Every partner motion I've shipped came down to one thing: a shared calendar, a shared metric, and enough trust to disagree in public. The rest is choreography.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== EXPERIENCE TIMELINE ============== -->
+  <section id="work" class="py-28 md:py-40 bg-ink text-cream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal max-w-3xl mb-20">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">05 &mdash; THE PATH</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
+          Where I've<br/>
+          <span class="italic">actually been.</span>
+        </h2>
+      </div>
+
+      <div class="space-y-1 border-l-2 border-cream/20 ml-4 md:ml-8 pl-8 md:pl-12">
+
+        <div class="relative pb-16 reveal">
+          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-rust ring-4 ring-rust/20 pulse"></div>
+          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">JUN 2025 — PRESENT &middot; AUSTIN, TX</p>
+          <h3 class="font-display text-3xl md:text-4xl mb-3">Dell Technologies</h3>
+          <p class="text-cream/60 mb-4">Global Commodity Manager — Software Partnerships</p>
+          <p class="text-cream/80 leading-relaxed max-w-3xl">Owning partner-led GTM strategy for Dell's cybersecurity software portfolio. Aligning five business units on segmentation, coverage, engagement, and investment across Endpoint, Identity, and AI Security.</p>
+        </div>
+
+        <div class="relative pb-16 reveal">
+          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-rust/70 ring-4 ring-rust/10"></div>
+          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">SUMMER 2024 &middot; AUSTIN, TX</p>
+          <h3 class="font-display text-3xl md:text-4xl mb-3">Dell &middot; Global Operations Intern</h3>
+          <p class="text-cream/80 leading-relaxed max-w-3xl">Built the segmentation framework covering 40+ AI vendors — adopted by Product and Sales leaders for GTM prioritization.</p>
+        </div>
+
+        <div class="relative pb-16 reveal">
+          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-violet-500 ring-4 ring-violet-500/20"></div>
+          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2019 — 2023 &middot; PUNE, INDIA</p>
+          <h3 class="font-display text-3xl md:text-4xl mb-3">ZS Associates</h3>
+          <p class="text-cream/60 mb-4">Associate Consultant → Decision Analytics</p>
+          <p class="text-cream/80 leading-relaxed max-w-3xl">Four years across pharma, health insurance, and specialty pharmacy. The place I learned that a good SQL query can end a two-hour meeting.</p>
+        </div>
+
+        <div class="relative pb-16 reveal">
+          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-cyan-400/20"></div>
+          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2018 — 2019 &middot; BANGALORE, INDIA</p>
+          <h3 class="font-display text-3xl md:text-4xl mb-3">Kidovators by GyanLab</h3>
+          <p class="text-cream/60 mb-4">Program Consultant &amp; BD Lead</p>
+          <p class="text-cream/80 leading-relaxed max-w-3xl">Eleven people, a mission, and a Google Sheet. Where I learned that "operating cadence" is a fancy word for "the thing that stops everyone from panicking on Friday."</p>
+        </div>
+
+        <div class="relative reveal">
+          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-lime ring-4 ring-lime/20" style="background:#d4f542"></div>
+          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2014 — 2018 &middot; 2023 — 2025</p>
+          <h3 class="font-display text-3xl md:text-4xl mb-3">Manipal (B.Tech ECE) &middot; McCombs (MBA)</h3>
+          <p class="text-cream/80 leading-relaxed max-w-3xl">Engineering undergrad from Manipal. MBA in Strategy &amp; Innovation from UT Austin's McCombs School of Business on a merit scholarship. Marketing Fellow (24 of 250). Advised H-E-B on the "Future of Meals."</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== OFF THE CLOCK ============== -->
+  <section id="offclock" class="py-28 md:py-40">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal max-w-3xl mb-16">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">06 &mdash; OFF THE CLOCK</p>
+        <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
+          Also,<br/>
+          <span class="italic">a whole person.</span>
+        </h2>
+        <p class="mt-6 text-lg text-ink/70">If we work together, you'll find out pretty quickly. Might as well tell you now.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[-3deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Formula 1 car"
+                 onerror="this.src='https://images.pexels.com/photos/12790587/pexels-photo-12790587.jpeg?w=500'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Formula 1</p>
+          <p class="text-center text-xs text-ink/60 mt-1">Lando's year. Fight me.</p>
+        </div>
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[2deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Cocktail mixology"
+                 onerror="this.src='https://picsum.photos/seed/cocktail/500/625'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Mixology</p>
+          <p class="text-center text-xs text-ink/60 mt-1">Currently perfecting the Negroni Sbagliato.</p>
+        </div>
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[-1deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Poetry notebook"
+                 onerror="this.src='https://picsum.photos/seed/poetry/500/625'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Poetry</p>
+          <p class="text-center text-xs text-ink/60 mt-1">I write it. I don't share it. Except sometimes.</p>
+        </div>
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[3deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Dinner hosting"
+                 onerror="this.src='https://picsum.photos/seed/dinner/500/625'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Hosting dinner</p>
+          <p class="text-center text-xs text-ink/60 mt-1">Menu-planning starts a week out. Sorry.</p>
+        </div>
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[-2deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Live concert"
+                 onerror="this.src='https://picsum.photos/seed/concert/500/625'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Concerts</p>
+          <p class="text-center text-xs text-ink/60 mt-1">Front row, or on the couch. No middle ground.</p>
+        </div>
+
+        <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[2deg]">
+          <div class="aspect-[4/5] overflow-hidden rounded">
+            <img src="https://images.unsplash.com/photo-1528819622765-d6bcf132f793?w=500&q=80&auto=format&fit=crop"
+                 class="w-full h-full object-cover" alt="Board games"
+                 onerror="this.src='https://picsum.photos/seed/games/500/625'"/>
+          </div>
+          <p class="font-display italic text-xl mt-4 text-center">Social games</p>
+          <p class="text-center text-xs text-ink/60 mt-1">I lose graciously. Mostly.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== BIG QUOTE ============== -->
+  <section class="py-28 md:py-40 bg-rust text-cream relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 text-center reveal">
+      <p class="font-mono text-xs tracking-widest mb-8 opacity-80">A FEW OTHER THINGS</p>
+      <p class="font-display text-3xl md:text-5xl leading-tight italic mb-8">
+        &ldquo;I care about three things at work:
+        does the customer notice, does the team trust each other,
+        and does the metric move.
+        <span class="not-italic">Everything else is preference.&rdquo;</span>
+      </p>
+      <p class="font-mono text-sm opacity-70">— me, in most conversations</p>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT ============== -->
+  <section id="contact" class="py-28 md:py-40 bg-cream">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-[1.2fr_1fr] gap-16 items-center">
+        <div class="reveal">
+          <p class="font-mono text-xs tracking-widest text-rust mb-6">07 &mdash; SAY HI</p>
+          <h2 class="font-display text-5xl md:text-8xl font-medium leading-[0.9]">
+            Let's talk about<br/>
+            <span class="italic text-rust">what could ship next.</span>
+          </h2>
+          <p class="mt-8 text-lg text-ink/70 max-w-xl">
+            Open to Strategy &amp; Operations roles where partner motions,
+            segmentation, and operating cadence are the hard problem.
+            Based in Austin, TX. Authorized to work in the US. Valid H-1B.
+          </p>
+          <p class="mt-4 text-sm text-ink/50 font-mono">Also: coffee. Any time. Ask.</p>
+        </div>
+
+        <div class="reveal space-y-3">
+          <a href="mailto:ashwyn@utexas.edu" class="group flex items-center justify-between gap-4 bg-ink text-cream rounded-2xl p-6 hover:bg-rust transition" data-cursor="hover">
+            <div>
+              <p class="font-mono text-xs tracking-widest text-cream/60 mb-1">EMAIL</p>
+              <p class="font-display text-2xl">ashwyn@utexas.edu</p>
+            </div>
+            <span class="text-3xl group-hover:translate-x-2 transition">&rarr;</span>
+          </a>
+          <a href="https://linkedin.com/in/ashwyn30/" target="_blank" rel="noopener" class="group flex items-center justify-between gap-4 bg-cream border-2 border-ink rounded-2xl p-6 hover:bg-ink hover:text-cream transition" data-cursor="hover">
+            <div>
+              <p class="font-mono text-xs tracking-widest text-ink/60 group-hover:text-cream/60 mb-1">LINKEDIN</p>
+              <p class="font-display text-2xl">/in/ashwyn30</p>
+            </div>
+            <span class="text-3xl group-hover:translate-x-2 transition">&rarr;</span>
+          </a>
+          <a href="tel:+17373428178" class="group flex items-center justify-between gap-4 bg-cream border-2 border-ink rounded-2xl p-6 hover:bg-ink hover:text-cream transition" data-cursor="hover">
+            <div>
+              <p class="font-mono text-xs tracking-widest text-ink/60 group-hover:text-cream/60 mb-1">PHONE</p>
+              <p class="font-display text-2xl">(737) 342-8178</p>
+            </div>
+            <span class="text-3xl group-hover:translate-x-2 transition">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-ink text-cream py-16 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+      <div>
+        <p class="font-display text-6xl md:text-8xl italic">Thanks<span class="text-rust">.</span></p>
+        <p class="mt-4 text-cream/60 max-w-md">Built by me, with too much coffee and a soundtrack. Photos: Unsplash contributors. Type: Fraunces + Inter + JetBrains Mono.</p>
+      </div>
+      <div class="text-cream/50 text-sm space-y-2 md:text-right">
+        <p>&copy; <span id="year"></span> Ashwyn Kumar</p>
+        <p class="font-mono text-xs">try ↑↑↓↓←→←→BA</p>
+        <a href="#top" class="link-underline text-cream" data-cursor="hover">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============== YEAR ==============
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============== CUSTOM CURSOR ==============
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  });
+  function loop() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('[data-cursor="hover"], a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // ============== SCROLL PROGRESS ==============
+  const progress = document.querySelector('.progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = `${(window.scrollY / h) * 100}%`;
+  });
+
+  // ============== REVEAL ON SCROLL ==============
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ============== COUNTERS ==============
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = +el.dataset.target;
+        const duration = 1800;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(target * eased).toLocaleString();
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.counter').forEach(el => countObserver.observe(el));
+
+  // ============== KONAMI EASTER EGG ==============
+  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let idx = 0;
+  window.addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === konami[idx].toLowerCase()) {
+      idx++;
+      if (idx === konami.length) {
+        idx = 0;
+        if (window.confetti) {
+          const duration = 3000;
+          const end = Date.now() + duration;
+          (function frame() {
+            confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#c85a3e','#7c5ce0','#d4f542','#0a0a0a'] });
+            confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#c85a3e','#7c5ce0','#d4f542','#0a0a0a'] });
+            if (Date.now() < end) requestAnimationFrame(frame);
+          })();
+        }
+      }
+    } else {
+      idx = 0;
+    }
+  });
+
+  // ============== CLOCK TIME ==============
+  function updateTime() {
+    const opts = { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', hour12: false };
+    const t = new Date().toLocaleTimeString('en-US', opts);
+    const el = document.querySelector('.hero-time');
+    if (el) el.textContent = `AUSTIN, TX · ${t} CT`;
+  }
+  // update the first "AUSTIN, TX · ..." span if you want a live clock
+  const timeEl = document.querySelector('main section:first-of-type .font-mono');
+  if (timeEl) {
+    timeEl.classList.add('hero-time');
+    updateTime();
+    setInterval(updateTime, 30000);
+  }
+</script>
+
+</body>
+</html>
