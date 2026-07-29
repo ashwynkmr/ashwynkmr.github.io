@@ -38,3 +38,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .content-collections
+
+# local-only reference files (never commit)
+/_private/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# local marquee mockup preview
+/mockup.html

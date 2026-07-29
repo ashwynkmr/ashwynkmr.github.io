@@ -3,147 +3,134 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ashwyn Kumar · Strategy that ships.</title>
-<meta name="description" content="Strategy & Operations leader in Austin. I turn partner ecosystems into engines of growth, and enjoy Formula 1, poetry, and a perfectly balanced Negroni along the way." />
+<title>Ashwyn Kumar · Half strategist. Half builder. All in on AI.</title>
+<meta name="description" content="Strategy & Operations leader in Austin. Problem solver by trade. Ridiculously excited to build with AI. Currently doing partner GTM at Dell, and a stack of side projects." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Inter', 'system-ui'],
-          serif: ['Fraunces', 'Georgia', 'serif'],
-          mono: ['JetBrains Mono', 'monospace'],
-        },
-        colors: {
-          ink: '#0a0a0a',
-          cream: '#f5f2ea',
-          rust: '#c85a3e',
-        },
-      },
-    },
-  };
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans:['Inter','system-ui'], serif:['Fraunces','Georgia','serif'], mono:['JetBrains Mono','monospace'] },
+    colors: { ink:'#0a0a0a', cream:'#f5f2ea', rust:'#c85a3e' },
+  } } };
 </script>
 <style>
-  :root {
-    --ink: #0a0a0a;
-    --cream: #f5f2ea;
-    --rust: #c85a3e;
-    --lime: #d4f542;
-    --violet: #7c5ce0;
-  }
+  :root { --ink:#0a0a0a; --cream:#f5f2ea; --rust:#c85a3e; --lime:#d4f542; --violet:#7c5ce0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; cursor: none; }
-  .font-display { font-family: 'Fraunces', serif; letter-spacing: -0.03em; }
-  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  body { font-family:'Inter',sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; cursor:none; }
+  .font-display { font-family:'Fraunces',serif; letter-spacing:-0.03em; }
+  .font-mono { font-family:'JetBrains Mono',monospace; }
 
-  /* Custom cursor */
-  .cursor-dot, .cursor-ring {
-    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-    border-radius: 50%; transform: translate(-50%, -50%);
-    transition: opacity 0.2s;
-  }
-  .cursor-dot {
-    width: 8px; height: 8px; background: var(--ink);
-    transition: transform 0.1s ease-out;
-  }
-  .cursor-ring {
-    width: 40px; height: 40px; border: 1.5px solid var(--ink);
-    transition: transform 0.3s ease-out, width 0.3s ease, height 0.3s ease, background 0.3s ease;
-    mix-blend-mode: difference;
-    filter: invert(1);
-  }
-  .cursor-hover .cursor-ring {
-    width: 70px; height: 70px; background: var(--rust); border-color: var(--rust);
-  }
-  @media (max-width: 900px) {
-    body { cursor: auto; }
-    .cursor-dot, .cursor-ring { display: none; }
-  }
-  a, button, [data-cursor="hover"] { cursor: none; }
-  @media (max-width: 900px) { a, button, [data-cursor="hover"] { cursor: pointer; } }
+  /* Cursor */
+  .cursor-dot,.cursor-ring { position:fixed; top:0; left:0; pointer-events:none; z-index:9999; border-radius:50%; transform:translate(-50%,-50%); transition:opacity 0.2s; }
+  .cursor-dot { width:8px; height:8px; background:var(--ink); transition:transform 0.1s ease-out; }
+  .cursor-ring { width:40px; height:40px; border:1.5px solid var(--ink); transition:transform 0.3s ease-out,width 0.3s,height 0.3s,background 0.3s; mix-blend-mode:difference; filter:invert(1); }
+  .cursor-hover .cursor-ring { width:70px; height:70px; background:var(--rust); border-color:var(--rust); }
+  @media (max-width:900px) { body{cursor:auto} .cursor-dot,.cursor-ring{display:none} }
+  a,button,[data-cursor="hover"] { cursor:none; }
+  @media (max-width:900px) { a,button,[data-cursor="hover"]{cursor:pointer} }
 
-  /* Scroll progress bar */
-  .progress {
-    position: fixed; top: 0; left: 0; height: 3px;
-    background: linear-gradient(90deg, var(--rust), var(--violet));
-    width: 0%; z-index: 100; transition: width 0.1s;
-  }
+  .progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--rust),var(--violet)); width:0%; z-index:100; transition:width 0.1s; }
 
-  /* Grain overlay for tactile feel */
-  .grain::before {
-    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 50;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.35; mix-blend-mode: multiply;
-  }
+  .grain::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:50;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.35; mix-blend-mode:multiply; }
 
-  /* Reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
-  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity:1; transform:translateY(0); }
 
-  /* Marquee */
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
-  .marquee-pause:hover .marquee-track { animation-play-state: paused; }
+  /* Marquee: value tokens (main band) */
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-track { display:inline-flex; animation:marquee 45s linear infinite; }
+  .marquee-pause:hover .marquee-track { animation-play-state:paused; }
 
-  /* Floating orbs in hero */
-  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-40px) scale(1.15); } }
-  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,30px) scale(0.9); } }
-  .orb-1 { animation: float1 12s ease-in-out infinite; }
-  .orb-2 { animation: float2 16s ease-in-out infinite; }
+  /* Tool marquee (dual row) */
+  @keyframes scroll-left { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes scroll-right { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+  .tools-left { animation:scroll-left 50s linear infinite; }
+  .tools-right { animation:scroll-right 60s linear infinite; }
+  .tools-wrap:hover .tools-left, .tools-wrap:hover .tools-right { animation-play-state:paused; }
+  .tool-pill { display:inline-flex; align-items:center; gap:0.55rem; padding:0.5rem 1rem; margin:0 0.3rem;
+    border:1px solid rgba(245,242,234,0.2); border-radius:999px; background:rgba(255,255,255,0.06); backdrop-filter:blur(6px);
+    font-size:0.9rem; font-weight:500; color:var(--cream); transition:all 0.3s; white-space:nowrap; }
+  .tool-pill:hover { border-color:var(--rust); transform:translateY(-2px); background:rgba(200,90,62,0.15); }
+  .tool-dot { width:8px; height:8px; border-radius:50%; }
 
-  /* Case study card */
-  .case-card { position: relative; overflow: hidden; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-  .case-card:hover { transform: translateY(-8px); }
-  .case-card .case-image { transition: transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease; }
-  .case-card:hover .case-image { transform: scale(1.08); filter: brightness(0.55) saturate(0.6); }
-  .case-reveal { position: absolute; inset: 0; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; color: white; opacity: 0; transform: translateY(30px); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-  .case-card:hover .case-reveal { opacity: 1; transform: translateY(0); }
+  /* Floating orbs */
+  @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-40px) scale(1.15)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-40px,30px) scale(0.9)} }
+  .orb-1 { animation:float1 12s ease-in-out infinite; }
+  .orb-2 { animation:float2 16s ease-in-out infinite; }
 
-  /* Philosophy card flip */
-  .philo { perspective: 1200px; }
-  .philo-inner { position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-  .philo:hover .philo-inner { transform: rotateY(180deg); }
-  .philo-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-  .philo-back { transform: rotateY(180deg); }
+  /* Case study cards */
+  .case-card { position:relative; overflow:hidden; transition:transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .case-card:hover { transform:translateY(-8px); }
+  .case-card .case-image { transition:transform 0.9s cubic-bezier(0.16,1,0.3,1),filter 0.5s; }
+  .case-card:hover .case-image { transform:scale(1.08); filter:brightness(0.55) saturate(0.6); }
+  .case-reveal { position:absolute; inset:0; padding:2rem; display:flex; flex-direction:column; justify-content:flex-end; color:white; opacity:0; transform:translateY(30px); transition:opacity 0.4s,transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .case-card:hover .case-reveal { opacity:1; transform:translateY(0); }
+  .case-chip { display:inline-flex; padding:0.35rem 0.7rem; border-radius:999px; background:rgba(255,255,255,0.9); backdrop-filter:blur(4px); color:var(--ink); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; font-weight:600; text-transform:uppercase; align-self:flex-start; }
+  .case-title-shade { padding:0.5rem 0; }
 
-  /* Hobby polaroid tilt */
-  .polaroid { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-  .polaroid:hover { transform: translateY(-10px) rotate(0deg) scale(1.05) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.15); z-index: 5; }
+  /* Company card (The Path) */
+  .company-card { transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s; }
+  .company-card:hover { transform:translateY(-6px); box-shadow:0 30px 60px -20px rgba(0,0,0,0.15); }
 
-  /* Timeline dot pulse */
-  @keyframes pulse-dot { 0%,100% { box-shadow: 0 0 0 0 rgba(200,90,62,0.5); } 50% { box-shadow: 0 0 0 10px rgba(200,90,62,0); } }
-  .pulse { animation: pulse-dot 2s infinite; }
+  /* Polaroid */
+  .polaroid { transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+  .polaroid:hover { transform:translateY(-10px) rotate(0deg) scale(1.05) !important; box-shadow:0 20px 40px rgba(0,0,0,0.15); z-index:5; }
 
-  /* Marquee text underline hover */
-  .link-underline { position: relative; }
-  .link-underline::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+  /* Pulse dot */
+  @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(200,90,62,0.5)} 50%{box-shadow:0 0 0 10px rgba(200,90,62,0)} }
+  .pulse { animation:pulse-dot 2s infinite; }
+
+  /* Link underline hover */
+  .link-underline { position:relative; }
+  .link-underline::after { content:''; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .link-underline:hover::after { transform:scaleX(1); transform-origin:left; }
 
   /* Blob */
-  .blob { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; animation: morph 8s ease-in-out infinite; }
-  @keyframes morph {
-    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
-    50% { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; }
-  }
-
-  /* Now playing widget */
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .vinyl { animation: spin 6s linear infinite; }
+  .blob { border-radius:63% 37% 54% 46% / 55% 48% 52% 45%; animation:morph 8s ease-in-out infinite; }
+  @keyframes morph { 0%,100%{border-radius:63% 37% 54% 46% / 55% 48% 52% 45%} 50%{border-radius:40% 60% 30% 70% / 60% 30% 70% 40%} }
 
   /* Text stroke */
-  .text-stroke { -webkit-text-stroke: 1.5px var(--ink); color: transparent; }
+  .text-stroke { -webkit-text-stroke:1.5px var(--ink); color:transparent; }
 
-  /* Number tag rotate on hover */
-  .num-tag { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-  .num-tag:hover { transform: rotate(-8deg) scale(1.1); }
+  /* Blinking dot */
+  @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0.2} }
+  .blink { animation:blink 1.2s steps(2,jump-none) infinite; }
 
-  /* Konami hint */
-  .konami-hint { opacity: 0.4; transition: opacity 0.3s; }
-  .konami-hint:hover { opacity: 1; }
+  /* Building card */
+  .build-card { transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s, border-color 0.4s; }
+  .build-card:hover { transform:translateY(-6px); box-shadow:0 25px 50px -12px rgba(0,0,0,0.15); border-color:var(--rust); }
+  .build-card .arrow { transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .build-card:hover .arrow { transform:translate(6px,-6px); }
+
+  /* Neural network animation for "Now Building" AI tile */
+  .neural { position:absolute; inset:0; overflow:hidden; }
+  .neural svg { width:100%; height:100%; opacity:0.55; }
+  .neural .node { fill:var(--rust); animation:pulse-node 2.2s ease-in-out infinite; }
+  .neural .node.d1 { animation-delay:0s; }
+  .neural .node.d2 { animation-delay:0.3s; }
+  .neural .node.d3 { animation-delay:0.6s; }
+  .neural .node.d4 { animation-delay:0.9s; }
+  .neural .node.d5 { animation-delay:1.2s; }
+  .neural .link { stroke:var(--rust); stroke-width:1; stroke-dasharray:4 4; opacity:0.35;
+    animation:flow 3s linear infinite; }
+  @keyframes pulse-node {
+    0%,100% { r:2.5; opacity:0.4; }
+    50% { r:4; opacity:1; }
+  }
+  @keyframes flow {
+    to { stroke-dashoffset:-16; }
+  }
+
+  /* Rotating "now" tile */
+  .now-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.9s ease; }
+  .now-slide.active { opacity:1; }
+  .now-slide .now-bg { position:absolute; inset:0; background-size:cover; background-position:center; filter:brightness(0.45) saturate(1.1); }
+  .now-slide .now-content { position:absolute; inset:0; padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between; z-index:1; color:var(--cream); }
 </style>
 </head>
 <body class="grain">
@@ -157,11 +144,10 @@
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between text-ink">
     <a href="#top" class="font-display text-2xl font-semibold" data-cursor="hover">Ashwyn<span class="text-rust">.</span></a>
     <nav class="hidden md:flex items-center gap-7 text-sm">
-      <a href="#about" class="link-underline" data-cursor="hover">Throughline</a>
+      <a href="#dna" class="link-underline" data-cursor="hover">The DNA</a>
       <a href="#playbooks" class="link-underline" data-cursor="hover">Playbooks</a>
-      <a href="#philosophy" class="link-underline" data-cursor="hover">How I think</a>
-      <a href="#work" class="link-underline" data-cursor="hover">The path</a>
-      <a href="#offclock" class="link-underline" data-cursor="hover">Off the clock</a>
+      <a href="#lab" class="link-underline" data-cursor="hover">The Lab</a>
+      <a href="#path" class="link-underline" data-cursor="hover">The Path</a>
       <a href="#contact" class="link-underline" data-cursor="hover">Say hi</a>
     </nav>
     <a href="mailto:ashwyn@utexas.edu" class="hidden md:inline-flex items-center gap-2 rounded-full border border-ink/30 px-4 py-2 text-sm hover:bg-ink hover:text-cream transition" data-cursor="hover">
@@ -175,7 +161,6 @@
 
   <!-- ============== HERO ============== -->
   <section class="relative min-h-screen flex items-center overflow-hidden">
-    <!-- floating orbs -->
     <div class="orb-1 absolute -top-32 -left-40 w-[500px] h-[500px] blob bg-gradient-to-br from-orange-300/60 to-rust/40 blur-3xl"></div>
     <div class="orb-2 absolute -bottom-40 -right-20 w-[600px] h-[600px] blob bg-gradient-to-br from-violet-300/50 to-blue-300/40 blur-3xl"></div>
 
@@ -186,137 +171,254 @@
           <span>AUSTIN, TX &middot; 07:42 CT</span>
         </div>
 
-        <h1 class="font-display text-[clamp(3rem,10vw,8.5rem)] font-medium leading-[0.88] tracking-tight">
-          I make<br/>
-          <span class="italic">strategy</span><br/>
-          <span class="text-stroke">actually</span><br/>
-          ship.<span class="text-rust">*</span>
+        <h1 class="font-display text-[clamp(3rem,9vw,8rem)] font-medium leading-[0.9] tracking-tight">
+          Half strategist.<br/>
+          <span class="italic">Half builder.</span><br/>
+          All in on <span class="text-stroke">AI</span>.<span class="text-rust">*</span>
         </h1>
 
         <p class="text-lg md:text-xl text-ink/70 max-w-xl leading-relaxed">
-          <span class="font-mono text-xs text-rust">* not a PowerPoint promise</span><br/>
+          <span class="font-mono text-xs text-rust">* Problem solver by trade. Ridiculously excited to build with AI.</span><br/>
           I'm Ashwyn, a Strategy &amp; Operations leader who lives at the seam
-          between spreadsheets and stand-ups. Currently turning Dell's cybersecurity
-          partner ecosystem into an engine of growth. Previously, at ZS Associates,
-          I helped Fortune 50 clients turn terabytes of sales data into
-          <em class="font-display">decisions their boards could fund</em>.
+          between spreadsheets and stand-ups. Right now, I'm the cybersecurity
+          partner strategist for <em class="font-display">Dell's global software portfolio</em>.
+          On nights and weekends, I'm shipping a stack of AI side projects out of my kitchen.
         </p>
 
         <div class="flex flex-wrap items-center gap-4">
-          <a href="#playbooks" class="group inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 rounded-full font-medium hover:bg-rust transition" data-cursor="hover">
-            See the playbooks
+          <a href="#lab" class="group inline-flex items-center gap-3 bg-ink text-cream px-7 py-4 rounded-full font-medium hover:bg-rust transition" data-cursor="hover">
+            See what I'm building
             <span class="group-hover:translate-x-1 transition">&rarr;</span>
           </a>
-          <a href="#philosophy" class="link-underline font-medium" data-cursor="hover">Or read how I think &rarr;</a>
+          <a href="#dna" class="link-underline font-medium" data-cursor="hover">Or the story so far &rarr;</a>
         </div>
       </div>
 
-      <!-- Photo mosaic + "currently" widget -->
+      <!-- Photo mosaic -->
       <div class="relative grid grid-cols-2 gap-3 md:gap-4">
         <div class="col-span-2 aspect-[4/5] rounded-3xl overflow-hidden bg-ink/5 relative group" data-cursor="hover">
-          <img src="images/ashwyn-hero.jpg"
-               alt="Ashwyn Kumar"
+          <img src="images/ashwyn-hero.jpg" alt="Ashwyn Kumar"
                class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700"/>
           <div class="absolute top-4 left-4 bg-cream/95 rounded-full px-3 py-1 font-mono text-[10px] tracking-widest">
-            ASHWYN K. &middot; AUSTIN, TX
+            ASHWYN &middot; AUSTIN, TX
           </div>
         </div>
-        <div class="aspect-square rounded-3xl overflow-hidden bg-ink/5">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop"
-               alt="Data on a screen"
-               class="w-full h-full object-cover"
-               onerror="this.src='https://picsum.photos/seed/data/500/500'"/>
-        </div>
-        <div class="aspect-square rounded-3xl bg-ink text-cream p-5 flex flex-col justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-full bg-rust vinyl flex items-center justify-center">
-              <div class="w-1.5 h-1.5 rounded-full bg-cream"></div>
+
+        <!-- Tile A: Now Building (with neural network animation bg) -->
+        <div class="aspect-square rounded-3xl bg-ink text-cream p-5 relative overflow-hidden">
+          <div class="neural">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Links -->
+              <line class="link" x1="30" y1="60" x2="100" y2="40"/>
+              <line class="link" x1="30" y1="60" x2="100" y2="100"/>
+              <line class="link" x1="30" y1="60" x2="100" y2="160"/>
+              <line class="link" x1="30" y1="140" x2="100" y2="40"/>
+              <line class="link" x1="30" y1="140" x2="100" y2="100"/>
+              <line class="link" x1="30" y1="140" x2="100" y2="160"/>
+              <line class="link" x1="100" y1="40" x2="170" y2="80"/>
+              <line class="link" x1="100" y1="100" x2="170" y2="80"/>
+              <line class="link" x1="100" y1="100" x2="170" y2="140"/>
+              <line class="link" x1="100" y1="160" x2="170" y2="140"/>
+              <!-- Nodes -->
+              <circle class="node d1" cx="30" cy="60" r="3"/>
+              <circle class="node d2" cx="30" cy="140" r="3"/>
+              <circle class="node d3" cx="100" cy="40" r="3"/>
+              <circle class="node d4" cx="100" cy="100" r="3"/>
+              <circle class="node d5" cx="100" cy="160" r="3"/>
+              <circle class="node d1" cx="170" cy="80" r="3"/>
+              <circle class="node d3" cx="170" cy="140" r="3"/>
+            </svg>
+          </div>
+          <div class="relative z-10 h-full flex flex-col justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-rust rounded-full blink"></span>
+              <span class="font-mono text-[10px] tracking-widest text-cream/70">NOW BUILDING</span>
             </div>
-            <span class="font-mono text-[10px] tracking-widest opacity-70">NOW SPINNING</span>
+            <div>
+              <p class="font-display text-lg leading-tight">AI dinner co-host<br/><span class="text-cream/60 text-sm font-sans">& two more in the workshop</span></p>
+            </div>
           </div>
-          <div>
-            <p class="font-display text-lg leading-tight">The Bear<br/><span class="text-cream/60 text-sm font-sans">season 4, obviously</span></p>
+        </div>
+
+        <!-- Tile B: Rotating "now" widget (5 items × 10s, click to advance) -->
+        <div id="now-tile" class="aspect-square rounded-3xl bg-ink relative overflow-hidden select-none" data-cursor="hover" role="button" aria-label="Cycle now-showing card">
+          <!-- Slide 1: Reading -->
+          <div class="now-slide active" data-slide="0">
+            <div class="now-bg" style="background-image:url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&q=80&auto=format&fit=crop')"></div>
+            <div class="now-content">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rust"></span>
+                <span class="font-mono text-[10px] tracking-widest opacity-80">NOW READING</span>
+              </div>
+              <div>
+                <p class="font-display text-lg leading-tight">Freakonomics<br/><span class="text-cream/70 text-sm font-sans">Levitt &amp; Dubner</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2: Spinning (Abbey Road cover) -->
+          <div class="now-slide" data-slide="1">
+            <div class="now-bg" style="background-image:url('images/abbey-road.jpg'); filter:brightness(0.55) saturate(1.15);"></div>
+            <div class="now-content">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rust"></span>
+                <span class="font-mono text-[10px] tracking-widest opacity-80">NOW SPINNING</span>
+              </div>
+              <div>
+                <p class="font-display text-lg leading-tight">Abbey Road<br/><span class="text-cream/70 text-sm font-sans">The Beatles</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3: Watching -->
+          <div class="now-slide" data-slide="2">
+            <div class="now-bg" style="background-image:url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80&auto=format&fit=crop')"></div>
+            <div class="now-content">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rust"></span>
+                <span class="font-mono text-[10px] tracking-widest opacity-80">NOW WATCHING</span>
+              </div>
+              <div>
+                <p class="font-display text-lg leading-tight">House of the Dragon<br/><span class="text-cream/70 text-sm font-sans">petty royals. giant dragons.</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 4: Training -->
+          <div class="now-slide" data-slide="3">
+            <div class="now-bg" style="background-image:url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=500&q=80&auto=format&fit=crop')"></div>
+            <div class="now-content">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rust"></span>
+                <span class="font-mono text-[10px] tracking-widest opacity-80">NOW TRAINING</span>
+              </div>
+              <div>
+                <p class="font-display text-lg leading-tight">Austin Half<br/><span class="text-cream/70 text-sm font-sans">slowly. steadily.</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 5: Next trip (Seattle cherry blossom) -->
+          <div class="now-slide" data-slide="4">
+            <div class="now-bg" style="background-image:url('images/seattle-cherry.jpg')"></div>
+            <div class="now-content">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rust"></span>
+                <span class="font-mono text-[10px] tracking-widest opacity-80">NEXT TRIP</span>
+              </div>
+              <div>
+                <p class="font-display text-lg leading-tight">Seattle, WA<br/><span class="text-cream/70 text-sm font-sans">rain optional</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Dots -->
+          <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
+            <span class="now-dot w-1.5 h-1.5 rounded-full bg-cream/80" data-dot="0"></span>
+            <span class="now-dot w-1.5 h-1.5 rounded-full bg-cream/30" data-dot="1"></span>
+            <span class="now-dot w-1.5 h-1.5 rounded-full bg-cream/30" data-dot="2"></span>
+            <span class="now-dot w-1.5 h-1.5 rounded-full bg-cream/30" data-dot="3"></span>
+            <span class="now-dot w-1.5 h-1.5 rounded-full bg-cream/30" data-dot="4"></span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Scroll cue -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-xs text-ink/50 flex flex-col items-center gap-2">
       <span>scroll</span>
       <div class="w-px h-8 bg-ink/30"></div>
     </div>
   </section>
 
-  <!-- ============== MARQUEE ============== -->
-  <section class="border-y-2 border-ink py-6 bg-ink text-cream overflow-hidden marquee-pause">
+  <!-- ============== VALUE MARQUEE (thinner) ============== -->
+  <section class="border-y-2 border-ink py-3 bg-ink text-cream overflow-hidden marquee-pause">
     <div class="marquee-track whitespace-nowrap">
-      <span class="font-display text-3xl md:text-5xl italic px-8">Partner GTM</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl px-8">Segmentation</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl italic px-8">Executive Storytelling</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl px-8">Operational Cadence</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl italic px-8">Change Management</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">GTM strategist</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">AI-native operator</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Problem detangler</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">Sharp storytelling</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Diverse rooms</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">Prototype-first</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Curious by default</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">High-stakes ready</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
       <!-- duplicate for seamless -->
-      <span class="font-display text-3xl md:text-5xl italic px-8">Partner GTM</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl px-8">Segmentation</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl italic px-8">Executive Storytelling</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl px-8">Operational Cadence</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
-      <span class="font-display text-3xl md:text-5xl italic px-8">Change Management</span>
-      <span class="text-rust text-3xl md:text-5xl px-4">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">GTM strategist</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">AI-native operator</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Problem detangler</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">Sharp storytelling</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Diverse rooms</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">Prototype-first</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl italic px-6">Curious by default</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
+      <span class="font-display text-xl md:text-2xl px-6">High-stakes ready</span>
+      <span class="text-rust text-xl md:text-2xl px-3">✦</span>
     </div>
   </section>
 
-  <!-- ============== ABOUT / STORY ============== -->
-  <section id="about" class="py-28 md:py-40 relative">
+  <!-- ============== 01 · THE DNA ============== -->
+  <section id="dna" class="py-28 md:py-40 relative">
     <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-[1fr_1.4fr] gap-16">
       <div class="reveal">
-        <p class="font-mono text-xs tracking-widest text-rust mb-6">01 &middot; THE THROUGHLINE</p>
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">01 &middot; THE DNA</p>
         <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
-          Six years,<br/>
+          Nine years,<br/>
           three continents,<br/>
           <span class="italic">one obsession.</span>
         </h2>
       </div>
       <div class="reveal space-y-6 text-lg text-ink/75 leading-relaxed">
         <p>
-          I started my career in a Bangalore ed-tech startup with eleven people
-          and a Google Sheet for a CRM. I ended up at Dell's global partner team
-          in Austin, aligning five business units on how we sell cybersecurity to
-          the Fortune 500.
+          I started at a Bangalore ed-tech startup. Eleven people, one Google Sheet
+          for a CRM, and a lot of ambition. Nine years later, I'm at Dell as the
+          cybersecurity partner strategist for our global software portfolio. Translation:
+          I stand between five business units, three product teams, and vendors with
+          strong opinions, and make the motion actually ship.
+          <strong>AI is how I keep up. Cross-functional problem solving is how I keep score.</strong>
+        </p>
+        <p>
+          In between, four years at ZS Associates on high-stakes engagements with
+          Fortune 50 pharma, health insurance, and specialty pharmacy clients.
+          The kind of engagements where the deck lands at 6:47 for a 7:00 client
+          call and you're still calm. Six of us broke into US health insurance
+          from scratch. I built the client SME and dataset depth, then trained every
+          senior and junior hire that followed. <strong>Six became sixty.</strong>
+          Client management, executive communication, quantitative rigor, structured
+          problem solving. The go-hard toolkit got hammered in.
         </p>
         <p>
           Different industries, different scales, different rooms. Same pull.
-          <strong>A hard, gnarly problem, and a diverse room to think it through with.</strong>
+          <strong>A hard, tangled problem, and a room full of people I can learn from
+          while we untangle it.</strong>
         </p>
         <p>
-          At ZS, six of us broke into the US health insurance market from scratch.
-          I built the SME depth on the clients and the datasets, then turned it into
-          the onboarding curriculum for every senior and junior hire that came after.
-          <strong>Six became sixty.</strong> The market opened.
+          Today, the problem solving happens with AI in the loop. At work, I use it
+          to compress days of analysis into hours. At home, I build with it. I don't
+          wait for a strategy deck to know if something will work; I prototype it,
+          put it in front of real people, then write the story around what I learned.
         </p>
         <div class="pt-4 flex items-center gap-4">
           <div class="w-14 h-14 rounded-full bg-rust/20 flex items-center justify-center">
             <div class="w-3 h-3 rounded-full bg-rust"></div>
           </div>
-          <p class="font-display italic text-xl">the best problems are the ones you can't solve alone.</p>
+          <p class="font-display italic text-xl">the best problems are the ones that teach you something new.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============== METRICS ============== -->
+  <!-- ============== 02 · THE LEDGER ============== -->
   <section class="py-24 bg-ink text-cream relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
-      <p class="font-mono text-xs tracking-widest text-rust mb-4 reveal">02 &middot; RECEIPTS</p>
+      <p class="font-mono text-xs tracking-widest text-rust mb-4 reveal">02 &middot; THE LEDGER</p>
       <h2 class="font-display text-4xl md:text-6xl mb-16 reveal">
         Because talk is cheap. <span class="italic text-cream/50">Numbers aren't.</span>
       </h2>
@@ -347,17 +449,17 @@
     </div>
   </section>
 
-  <!-- ============== PLAYBOOKS / CASE STUDIES ============== -->
+  <!-- ============== 03 · PLAYBOOKS ============== -->
   <section id="playbooks" class="py-28 md:py-40">
     <div class="max-w-7xl mx-auto px-6">
       <div class="reveal max-w-3xl mb-16">
         <p class="font-mono text-xs tracking-widest text-rust mb-6">03 &middot; PLAYBOOKS</p>
         <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
-          Six stories,<br/>
+          Stories,<br/>
           <span class="italic">told the way</span><br/>
           they actually happened.
         </h2>
-        <p class="mt-6 text-lg text-ink/70">Not the polished deck version. The messy-middle version.</p>
+        <p class="mt-6 text-lg text-ink/70">Not the polished deck version. The messy-middle version. Weighted toward the recent, because that's where the pattern is clearest.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5 auto-rows-[220px] md:auto-rows-[300px]">
@@ -365,14 +467,13 @@
         <!-- Case 1: Dell CrowdStrike (large) -->
         <article class="case-card md:col-span-4 md:row-span-2 rounded-3xl bg-ink" data-cursor="hover">
           <div class="absolute inset-0">
-            <img class="case-image w-full h-full object-cover"
+            <img class="case-image w-full h-full object-cover" alt="Cybersecurity server room"
                  src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80&auto=format&fit=crop"
-                 alt="Cybersecurity server room"
                  onerror="this.src='https://picsum.photos/seed/cyber/1200/800'"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent"></div>
           </div>
           <div class="relative h-full p-8 md:p-10 flex flex-col justify-end text-cream">
-            <span class="font-mono text-xs tracking-widest text-rust mb-3">DELL &middot; 2025 &rarr; NOW</span>
+            <span class="case-chip mb-4">Dell &middot; 2025 &rarr; Now</span>
             <h3 class="font-display text-3xl md:text-5xl leading-tight max-w-2xl">
               How a stuck activation metric became a<br/><em>quarterly upward trend.</em>
             </h3>
@@ -393,17 +494,17 @@
         </article>
 
         <!-- Case 2: ZS Fortune 50 -->
-        <article class="case-card md:col-span-2 md:row-span-1 rounded-3xl bg-cream border-2 border-ink" data-cursor="hover">
+        <article class="case-card md:col-span-2 md:row-span-1 rounded-3xl bg-ink" data-cursor="hover">
           <div class="absolute inset-0">
-            <img class="case-image w-full h-full object-cover"
+            <img class="case-image w-full h-full object-cover" alt="Analytics dashboards"
                  src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&q=80&auto=format&fit=crop"
-                 alt="Analytics dashboards"
                  onerror="this.src='https://picsum.photos/seed/dash/800/500'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent"></div>
           </div>
-          <div class="relative h-full p-6 flex flex-col justify-end">
-            <span class="font-mono text-xs tracking-widest text-rust mb-2 bg-cream/95 self-start px-2 py-1 rounded">ZS &middot; FORTUNE 50</span>
-            <h3 class="font-display text-xl md:text-2xl leading-snug text-ink bg-cream/95 self-start px-2 rounded">
-              Turning sales data<br/>into a <em>$375M</em> decision.
+          <div class="relative h-full p-6 flex flex-col justify-end text-cream">
+            <span class="case-chip mb-2">ZS &middot; Fortune 50</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug">
+              Turning sales data into a <em>$375M</em> decision.
             </h3>
           </div>
           <div class="case-reveal bg-rust text-cream">
@@ -416,14 +517,13 @@
         <!-- Case 3: Healthcare AI -->
         <article class="case-card md:col-span-2 md:row-span-1 rounded-3xl bg-ink" data-cursor="hover">
           <div class="absolute inset-0">
-            <img class="case-image w-full h-full object-cover"
+            <img class="case-image w-full h-full object-cover" alt="Healthcare and medicine"
                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format&fit=crop"
-                 alt="Healthcare and medicine"
                  onerror="this.src='https://picsum.photos/seed/health/800/500'"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent"></div>
           </div>
           <div class="relative h-full p-6 flex flex-col justify-end text-cream">
-            <span class="font-mono text-xs tracking-widest text-rust mb-2">ZS &middot; HEALTHCARE</span>
+            <span class="case-chip mb-2">ZS &middot; Healthcare</span>
             <h3 class="font-display text-xl md:text-2xl leading-snug">
               AI interventions that <em>actually</em> moved adherence.
             </h3>
@@ -436,17 +536,17 @@
         </article>
 
         <!-- Case 4: Specialty Pharma -->
-        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-cream border-2 border-ink" data-cursor="hover">
+        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-ink" data-cursor="hover">
           <div class="absolute inset-0">
-            <img class="case-image w-full h-full object-cover"
+            <img class="case-image w-full h-full object-cover" alt="Pharmacy medications"
                  src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=900&q=80&auto=format&fit=crop"
-                 alt="Pharmacy medications"
                  onerror="this.src='https://picsum.photos/seed/pharma/900/500'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent"></div>
           </div>
-          <div class="relative h-full p-6 flex flex-col justify-end">
-            <span class="font-mono text-xs tracking-widest text-rust mb-2 bg-cream/95 self-start px-2 py-1 rounded">ZS &middot; $5.4B SPECIALTY PHARMA</span>
-            <h3 class="font-display text-xl md:text-2xl leading-snug text-ink bg-cream/95 self-start px-2 rounded">
-              −34% spend, same performance.
+          <div class="relative h-full p-6 flex flex-col justify-end text-cream">
+            <span class="case-chip mb-2">ZS &middot; $5.4B Specialty Pharma</span>
+            <h3 class="font-display text-xl md:text-2xl leading-snug">
+              −34% spend, <em>same performance.</em>
             </h3>
           </div>
           <div class="case-reveal bg-ink">
@@ -455,17 +555,17 @@
         </article>
 
         <!-- Case 5: Kidovators -->
-        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-rust text-cream" data-cursor="hover">
-          <div class="absolute inset-0 opacity-70">
-            <img class="case-image w-full h-full object-cover mix-blend-multiply"
+        <article class="case-card md:col-span-3 md:row-span-1 rounded-3xl bg-ink" data-cursor="hover">
+          <div class="absolute inset-0">
+            <img class="case-image w-full h-full object-cover" alt="Kids learning"
                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80&auto=format&fit=crop"
-                 alt="Kids learning"
                  onerror="this.src='https://picsum.photos/seed/kids/900/500'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent"></div>
           </div>
-          <div class="relative h-full p-6 flex flex-col justify-end">
-            <span class="font-mono text-xs tracking-widest opacity-80 mb-2">KIDOVATORS &middot; 2018 &rarr; 2019</span>
+          <div class="relative h-full p-6 flex flex-col justify-end text-cream">
+            <span class="case-chip mb-2">Kidovators &middot; 2018 &rarr; 2019</span>
             <h3 class="font-display text-xl md:text-2xl leading-snug">
-              0 to 9,600 students on a <em>11-person</em> team.
+              0 to 9,600 students on an <em>11-person</em> team.
             </h3>
           </div>
           <div class="case-reveal bg-ink">
@@ -477,90 +577,134 @@
     </div>
   </section>
 
-  <!-- ============== PHILOSOPHY ============== -->
-  <section id="philosophy" class="py-28 md:py-40 bg-cream relative overflow-hidden">
-    <div class="orb-1 absolute top-40 -right-40 w-96 h-96 blob bg-gradient-to-br from-lime/40 to-cyan-300/30 blur-3xl"></div>
+  <!-- ============== 04 · THE LAB ============== -->
+  <section id="lab" class="py-28 md:py-40 bg-ink text-cream relative overflow-hidden">
+    <div class="orb-2 absolute -bottom-40 -left-40 w-96 h-96 blob bg-gradient-to-br from-violet-500/30 to-cyan-400/20 blur-3xl"></div>
 
     <div class="max-w-7xl mx-auto px-6 relative">
-      <div class="reveal max-w-3xl mb-20">
-        <p class="font-mono text-xs tracking-widest text-rust mb-6">04 &middot; HOW I THINK</p>
+      <div class="reveal max-w-3xl mb-16">
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">04 &middot; THE LAB &middot; WHERE THE CURIOSITY SPILLS OVER</p>
         <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
-          Four things I believe<br/>
-          <span class="italic">that show up in the work.</span>
+          Prototyping the fix.<br/>
+          <span class="italic">One AI project at a time.</span>
         </h2>
-        <p class="mt-4 text-ink/60 font-mono text-sm">tap or hover a card to flip &rarr;</p>
+        <p class="mt-6 text-lg text-cream/70 max-w-2xl">
+          Some projects fix work. Some fix life. All of them teach me something new
+          about what these models can actually do, and where they still fall over.
+        </p>
+        <p class="mt-3 text-xs font-mono text-cream/50">↓ Placeholder cards. Real projects going in next.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid gap-6 md:grid-cols-3 mb-20">
+        <article class="build-card bg-cream text-ink rounded-3xl p-7 border-2 border-cream flex flex-col" data-cursor="hover">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-widest text-rust bg-rust/10 px-2 py-1 rounded">DRAFT &middot; V0</span>
+            <span class="arrow inline-block text-2xl">↗</span>
+          </div>
+          <h3 class="font-display text-3xl md:text-4xl leading-tight mb-3">Chef.</h3>
+          <p class="text-ink/70 leading-relaxed mb-6 flex-1">You tell it "six people, gluten-free, we love mezcal." It gives back a menu, a grocery list, a prep timeline, and a wine pairing. Because dinner-hosting shouldn't require a project manager.</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/10">
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Claude API</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Next.js</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">React</span>
+          </div>
+        </article>
 
-        <div class="philo h-80 reveal" data-cursor="hover">
-          <div class="philo-inner w-full h-full">
-            <div class="philo-face bg-ink text-cream rounded-3xl p-10 flex flex-col justify-between">
-              <span class="font-mono text-xs tracking-widest text-rust">01</span>
-              <div>
-                <h3 class="font-display text-3xl md:text-4xl leading-tight">Strategy that can't survive contact with the frontline isn't strategy.</h3>
-                <p class="mt-4 text-cream/60 text-sm">It's a PowerPoint.</p>
-              </div>
+        <article class="build-card bg-cream text-ink rounded-3xl p-7 border-2 border-cream flex flex-col" data-cursor="hover">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-widest text-rust bg-rust/10 px-2 py-1 rounded">DRAFT &middot; ALPHA</span>
+            <span class="arrow inline-block text-2xl">↗</span>
+          </div>
+          <h3 class="font-display text-3xl md:text-4xl leading-tight mb-3">PartnerPulse.</h3>
+          <p class="text-ink/70 leading-relaxed mb-6 flex-1">Paste any partner name. Get a 90-second pre-meeting brief: recent news, product moves, org signals, and what to actually ask in the room. Killed my Sunday-night prep ritual.</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/10">
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Claude</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Python</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">RAG</span>
+          </div>
+        </article>
+
+        <article class="build-card bg-cream text-ink rounded-3xl p-7 border-2 border-cream flex flex-col" data-cursor="hover">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-widest text-rust bg-rust/10 px-2 py-1 rounded">DRAFT &middot; CONCEPT</span>
+            <span class="arrow inline-block text-2xl">↗</span>
+          </div>
+          <h3 class="font-display text-3xl md:text-4xl leading-tight mb-3">OpsPilot.</h3>
+          <p class="text-ink/70 leading-relaxed mb-6 flex-1">Chat with your weekly ops data. "Which partner moved most on activation this quarter?" → chart, narrative, and three suggested talking points. For the 5pm Friday review.</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/10">
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Streamlit</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">DuckDB</span>
+            <span class="text-[10px] font-mono uppercase tracking-widest bg-ink text-cream px-2 py-1 rounded">Claude Code</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Tool marquee (Style α, dual row) -->
+      <div class="pt-10 border-t border-cream/10">
+        <p class="font-mono text-xs tracking-widest text-cream/50 mb-6 text-center">TOOLS I'M EXPERIMENTING WITH</p>
+
+        <div class="tools-wrap space-y-3">
+          <!-- Row 1: left-scrolling -->
+          <div class="overflow-hidden whitespace-nowrap">
+            <div class="tools-left inline-flex">
+              <span class="tool-pill"><span class="tool-dot bg-orange-500"></span>Claude</span>
+              <span class="tool-pill"><span class="tool-dot bg-orange-600"></span>Claude Code</span>
+              <span class="tool-pill"><span class="tool-dot bg-green-500"></span>ChatGPT</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>Cursor</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>v0</span>
+              <span class="tool-pill"><span class="tool-dot bg-teal-500"></span>Perplexity</span>
+              <span class="tool-pill"><span class="tool-dot bg-purple-500"></span>ElevenLabs</span>
+              <span class="tool-pill"><span class="tool-dot bg-gray-400"></span>Notion AI</span>
+              <span class="tool-pill"><span class="tool-dot bg-purple-700"></span>Obsidian</span>
+              <span class="tool-pill"><span class="tool-dot bg-indigo-500"></span>Windsurf</span>
+              <!-- duplicate -->
+              <span class="tool-pill"><span class="tool-dot bg-orange-500"></span>Claude</span>
+              <span class="tool-pill"><span class="tool-dot bg-orange-600"></span>Claude Code</span>
+              <span class="tool-pill"><span class="tool-dot bg-green-500"></span>ChatGPT</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>Cursor</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>v0</span>
+              <span class="tool-pill"><span class="tool-dot bg-teal-500"></span>Perplexity</span>
+              <span class="tool-pill"><span class="tool-dot bg-purple-500"></span>ElevenLabs</span>
+              <span class="tool-pill"><span class="tool-dot bg-gray-400"></span>Notion AI</span>
+              <span class="tool-pill"><span class="tool-dot bg-purple-700"></span>Obsidian</span>
+              <span class="tool-pill"><span class="tool-dot bg-indigo-500"></span>Windsurf</span>
             </div>
-            <div class="philo-face philo-back bg-rust text-cream rounded-3xl p-10 flex flex-col justify-center">
-              <p class="text-lg leading-relaxed">The best test of a strategy isn't the exec approval. It's whether a sales rep or ops manager can act on it Monday morning without asking three questions. Everything else is a whiteboard exercise.</p>
+          </div>
+          <!-- Row 2: right-scrolling -->
+          <div class="overflow-hidden whitespace-nowrap">
+            <div class="tools-right inline-flex">
+              <span class="tool-pill"><span class="tool-dot bg-blue-600"></span>LangChain</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>Vercel</span>
+              <span class="tool-pill"><span class="tool-dot bg-yellow-500"></span>NotebookLM</span>
+              <span class="tool-pill"><span class="tool-dot bg-slate-400"></span>Grok</span>
+              <span class="tool-pill"><span class="tool-dot bg-cyan-500"></span>Bolt</span>
+              <span class="tool-pill"><span class="tool-dot bg-yellow-400"></span>Nano Banana</span>
+              <span class="tool-pill"><span class="tool-dot bg-red-500"></span>n8n</span>
+              <span class="tool-pill"><span class="tool-dot bg-indigo-600"></span>Retool</span>
+              <span class="tool-pill"><span class="tool-dot bg-orange-400"></span>Zapier</span>
+              <!-- duplicate -->
+              <span class="tool-pill"><span class="tool-dot bg-blue-600"></span>LangChain</span>
+              <span class="tool-pill"><span class="tool-dot bg-white"></span>Vercel</span>
+              <span class="tool-pill"><span class="tool-dot bg-yellow-500"></span>NotebookLM</span>
+              <span class="tool-pill"><span class="tool-dot bg-slate-400"></span>Grok</span>
+              <span class="tool-pill"><span class="tool-dot bg-cyan-500"></span>Bolt</span>
+              <span class="tool-pill"><span class="tool-dot bg-yellow-400"></span>Nano Banana</span>
+              <span class="tool-pill"><span class="tool-dot bg-red-500"></span>n8n</span>
+              <span class="tool-pill"><span class="tool-dot bg-indigo-600"></span>Retool</span>
+              <span class="tool-pill"><span class="tool-dot bg-orange-400"></span>Zapier</span>
             </div>
           </div>
         </div>
 
-        <div class="philo h-80 reveal" data-cursor="hover">
-          <div class="philo-inner w-full h-full">
-            <div class="philo-face bg-cream border-2 border-ink rounded-3xl p-10 flex flex-col justify-between">
-              <span class="font-mono text-xs tracking-widest text-rust">02</span>
-              <div>
-                <h3 class="font-display text-3xl md:text-4xl leading-tight">The right answer is usually a mile away from the loudest voice in the room.</h3>
-                <p class="mt-4 text-ink/60 text-sm">Data is a great equalizer.</p>
-              </div>
-            </div>
-            <div class="philo-face philo-back bg-violet-600 text-cream rounded-3xl p-10 flex flex-col justify-center">
-              <p class="text-lg leading-relaxed">I've seen $70M growth opportunities missed because a senior VP was sure about a customer segment. Numbers don't care about tenure. My job is often to bring the number, translate what it means, and stay in the room while everyone re-adjusts.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="philo h-80 reveal" data-cursor="hover">
-          <div class="philo-inner w-full h-full">
-            <div class="philo-face bg-lime rounded-3xl p-10 flex flex-col justify-between" style="background:#d4f542">
-              <span class="font-mono text-xs tracking-widest text-ink/70">03</span>
-              <div>
-                <h3 class="font-display text-3xl md:text-4xl leading-tight text-ink">Pilots beat plans. Every time.</h3>
-                <p class="mt-4 text-ink/60 text-sm">Measure. Then scale.</p>
-              </div>
-            </div>
-            <div class="philo-face philo-back bg-ink text-cream rounded-3xl p-10 flex flex-col justify-center">
-              <p class="text-lg leading-relaxed">I default to small operational pilots before big rollouts. Not because I'm risk-averse. Because a two-week pilot with real customers tells you more than a two-month planning cycle. The cost of a small failure is the tuition for a big win.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="philo h-80 reveal" data-cursor="hover">
-          <div class="philo-inner w-full h-full">
-            <div class="philo-face bg-ink text-cream rounded-3xl p-10 flex flex-col justify-between">
-              <span class="font-mono text-xs tracking-widest text-rust">04</span>
-              <div>
-                <h3 class="font-display text-3xl md:text-4xl leading-tight">Partnerships are people, not org charts.</h3>
-                <p class="mt-4 text-cream/60 text-sm">You either build the relationship or you don't have one.</p>
-              </div>
-            </div>
-            <div class="philo-face philo-back bg-orange-300 text-ink rounded-3xl p-10 flex flex-col justify-center">
-              <p class="text-lg leading-relaxed">Every partner motion I've shipped came down to one thing: a shared calendar, a shared metric, and enough trust to disagree in public. The rest is choreography.</p>
-            </div>
-          </div>
-        </div>
-
+        <p class="mt-6 text-center text-cream/50 text-xs font-mono">not an expert. yet.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============== EXPERIENCE TIMELINE ============== -->
-  <section id="work" class="py-28 md:py-40 bg-ink text-cream">
+  <!-- ============== 05 · THE PATH (stacked company cards) ============== -->
+  <section id="path" class="py-28 md:py-40">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="reveal max-w-3xl mb-20">
+      <div class="reveal max-w-3xl mb-16">
         <p class="font-mono text-xs tracking-widest text-rust mb-6">05 &middot; THE PATH</p>
         <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
           Where I've<br/>
@@ -568,55 +712,140 @@
         </h2>
       </div>
 
-      <div class="space-y-1 border-l-2 border-cream/20 ml-4 md:ml-8 pl-8 md:pl-12">
+      <div class="space-y-6">
 
-        <div class="relative pb-16 reveal">
-          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-rust ring-4 ring-rust/20 pulse"></div>
-          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">JUN 2025 &rarr; PRESENT &middot; AUSTIN, TX</p>
-          <h3 class="font-display text-3xl md:text-4xl mb-3">Dell Technologies</h3>
-          <p class="text-cream/60 mb-4">Global Commodity Manager &middot; Software Partnerships</p>
-          <p class="text-cream/80 leading-relaxed max-w-3xl">Owning partner-led GTM strategy for Dell's cybersecurity software portfolio. Aligning five business units on segmentation, coverage, engagement, and investment across Endpoint, Identity, and AI Security.</p>
-        </div>
+        <!-- Dell -->
+        <article class="company-card bg-cream border-2 border-ink rounded-3xl p-8 md:p-12 grid md:grid-cols-[280px_1fr] gap-8 md:gap-12">
+          <div class="space-y-3">
+            <p class="font-mono text-xs tracking-widest text-rust">CURRENT</p>
+            <h3 class="font-display text-5xl md:text-6xl leading-[0.95]">Dell.</h3>
+            <p class="font-mono text-sm text-ink/60">2024 &rarr; Now</p>
+            <p class="text-ink/70">Global Commodity Manager<br/>Software Partnerships<br/>Austin, TX</p>
+          </div>
+          <div class="text-ink/80 leading-relaxed">
+            <p>
+              I lead partner strategy for Dell's cybersecurity software portfolio.
+              On any given day, I'm translating between five business units, three
+              product teams, and vendor execs who don't agree yet. The role is roughly
+              30% analysis, 30% storytelling, and 40% getting people to trust each other
+              enough to commit. It's my first time playing at this scale, and it's
+              teaching me the hard part of leadership: how to hold conviction and stay
+              open at the same time. AI is quietly the fifth teammate, the one that
+              keeps up when I can't.
+            </p>
+          </div>
+        </article>
 
-        <div class="relative pb-16 reveal">
-          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-rust/70 ring-4 ring-rust/10"></div>
-          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">SUMMER 2024 &middot; AUSTIN, TX</p>
-          <h3 class="font-display text-3xl md:text-4xl mb-3">Dell &middot; Global Operations Intern</h3>
-          <p class="text-cream/80 leading-relaxed max-w-3xl">Built the segmentation framework covering 40+ AI vendors, adopted by Product and Sales leaders for GTM prioritization.</p>
-        </div>
+        <!-- ZS -->
+        <article class="company-card bg-ink text-cream rounded-3xl p-8 md:p-12 grid md:grid-cols-[280px_1fr] gap-8 md:gap-12">
+          <div class="space-y-3">
+            <p class="font-mono text-xs tracking-widest text-rust">CONSULTING FOUNDATION</p>
+            <h3 class="font-display text-5xl md:text-6xl leading-[0.95]">ZS.</h3>
+            <p class="font-mono text-sm text-cream/60">2019 &rarr; 2023</p>
+            <p class="text-cream/70">Associate Consultant<br/>Decision Analytics<br/>Pune, India</p>
+          </div>
+          <div class="text-cream/80 leading-relaxed">
+            <p>
+              Four years of consulting, mostly in healthcare. I joined as a first
+              hire on a venture space and grew with it: from executing analyses solo,
+              to owning workstreams, to running client relationships and coaching the
+              analysts under me. This is where I learned what "leadership" actually
+              means. Not being the smartest person in the room, but being the calmest,
+              and making sure the room ships. The consulting muscle got built here:
+              structured thinking under pressure, exec-level communication, and the
+              confidence to say "I don't know" in front of a client without losing the room.
+            </p>
+          </div>
+        </article>
 
-        <div class="relative pb-16 reveal">
-          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-violet-500 ring-4 ring-violet-500/20"></div>
-          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2019 &rarr; 2023 &middot; PUNE, INDIA</p>
-          <h3 class="font-display text-3xl md:text-4xl mb-3">ZS Associates</h3>
-          <p class="text-cream/60 mb-4">Associate Consultant → Decision Analytics</p>
-          <p class="text-cream/80 leading-relaxed max-w-3xl">Four years across pharma, health insurance, and specialty pharmacy. The place I learned that a good SQL query can end a two-hour meeting.</p>
-        </div>
-
-        <div class="relative pb-16 reveal">
-          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-cyan-400/20"></div>
-          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2018 &rarr; 2019 &middot; BANGALORE, INDIA</p>
-          <h3 class="font-display text-3xl md:text-4xl mb-3">Kidovators by GyanLab</h3>
-          <p class="text-cream/60 mb-4">Program Consultant &amp; BD Lead</p>
-          <p class="text-cream/80 leading-relaxed max-w-3xl">Eleven people, a mission, and a Google Sheet. Where I learned that "operating cadence" is a fancy word for "the thing that stops everyone from panicking on Friday."</p>
-        </div>
-
-        <div class="relative reveal">
-          <div class="absolute -left-[42px] md:-left-[50px] top-1 w-4 h-4 rounded-full bg-lime ring-4 ring-lime/20" style="background:#d4f542"></div>
-          <p class="font-mono text-xs tracking-widest text-cream/50 mb-2">2014 &rarr; 2018 &middot; 2023 &rarr; 2025</p>
-          <h3 class="font-display text-3xl md:text-4xl mb-3">Manipal (B.Tech ECE) &middot; McCombs (MBA)</h3>
-          <p class="text-cream/80 leading-relaxed max-w-3xl">Engineering undergrad from Manipal. MBA in Strategy &amp; Innovation from UT Austin's McCombs School of Business on a merit scholarship. Marketing Fellow (24 of 250). Advised H-E-B on the "Future of Meals."</p>
-        </div>
+        <!-- Kidovators -->
+        <article class="company-card bg-cream border-2 border-ink rounded-3xl p-8 md:p-12 grid md:grid-cols-[280px_1fr] gap-8 md:gap-12">
+          <div class="space-y-3">
+            <p class="font-mono text-xs tracking-widest text-rust">FIRST CHAPTER</p>
+            <h3 class="font-display text-5xl md:text-6xl leading-[0.95]">Kidovators.</h3>
+            <p class="font-mono text-sm text-ink/60">2018 &rarr; 2019</p>
+            <p class="text-ink/70">Program Consultant<br/>&amp; BD Lead<br/>Bangalore, India</p>
+          </div>
+          <div class="text-ink/80 leading-relaxed">
+            <p>
+              My first job. Eleven people, one mission. I wore every hat that needed
+              wearing: sales, ops, marketing, teacher training, and a stint of teaching
+              myself video editing because we needed a marketing video. This is where I
+              learned that early-stage anything is 90% figuring out what needs doing and
+              10% doing it. Also where I learned that leadership starts long before the
+              title. It starts with picking up the thing nobody else wanted to.
+            </p>
+          </div>
+        </article>
 
       </div>
+
     </div>
   </section>
 
-  <!-- ============== OFF THE CLOCK ============== -->
-  <section id="offclock" class="py-28 md:py-40">
+  <!-- ============== SCHOOL PRIDE (own subsection with distinct bg) ============== -->
+  <section id="schools" class="py-24 md:py-32 relative overflow-hidden" style="background:linear-gradient(180deg, #f0ead6 0%, #ede4c8 100%);">
+    <!-- Decorative pennants top ribbon -->
+    <div class="absolute top-0 inset-x-0 h-1 flex">
+      <span class="flex-1" style="background:#bf5700"></span>
+      <span class="flex-1" style="background:#0a0a0a"></span>
+      <span class="flex-1" style="background:#c85a3e"></span>
+      <span class="flex-1" style="background:#f5f2ea"></span>
+      <span class="flex-1" style="background:#bf5700"></span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal max-w-3xl mb-14 text-center mx-auto">
+        <p class="font-mono text-xs tracking-widest text-rust mb-4">SCHOOL PRIDE</p>
+        <h2 class="font-display text-4xl md:text-6xl font-medium leading-[0.95]">
+          Where the mindset<br/>
+          <span class="italic">got built.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+        <article class="reveal bg-cream border-2 border-ink rounded-3xl p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="images/mccombs.png" alt="McCombs School of Business" class="h-14 w-auto object-contain"/>
+            <img src="images/longhorn.svg" alt="UT Austin Longhorn" class="h-12 w-auto object-contain"/>
+          </div>
+          <h3 class="font-display text-3xl mb-2">McCombs, UT Austin.</h3>
+          <p class="font-mono text-xs text-ink/60 mb-4">MBA · STRATEGY &amp; INNOVATION · 2023 → 2025</p>
+          <p class="text-ink/75 leading-relaxed">
+            Where I learned to hold a strategy narrative in one hand and a P&amp;L in the other. Two years of cross-industry case studies, marketing fellowships, and late-night debates on the "Future of Meals" for H-E-B taught me that <em>the best leaders trade being right for being useful</em>. Hook 'em.
+          </p>
+        </article>
+
+        <article class="reveal bg-cream border-2 border-ink rounded-3xl p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="images/manipal.png" alt="Manipal Institute of Technology" class="h-14 w-auto object-contain"/>
+          </div>
+          <h3 class="font-display text-3xl mb-2">MIT, Manipal.</h3>
+          <p class="font-mono text-xs text-ink/60 mb-4">B.TECH · ELECTRONICS &amp; COMMUNICATION · 2014 → 2018</p>
+          <p class="text-ink/75 leading-relaxed">
+            Four years of engineering rigor, but the leadership lessons came from the extracurriculars. Co-founded a national debate tournament, ran ops for two campus fests, wrote poetry on the side. Where I learned that <em>convening people around an idea is a skill you can build</em>, and the best way to build it is to just try.
+          </p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Bottom pennant ribbon -->
+    <div class="absolute bottom-0 inset-x-0 h-1 flex">
+      <span class="flex-1" style="background:#bf5700"></span>
+      <span class="flex-1" style="background:#0a0a0a"></span>
+      <span class="flex-1" style="background:#c85a3e"></span>
+      <span class="flex-1" style="background:#f5f2ea"></span>
+      <span class="flex-1" style="background:#bf5700"></span>
+    </div>
+  </section>
+
+  <!-- ============== OFF THE CLOCK (distinct bg to break continuity) ============== -->
+  <section id="offclock" class="py-28 md:py-40 relative" style="background:#faf7f0;">
     <div class="max-w-7xl mx-auto px-6">
       <div class="reveal max-w-3xl mb-16">
-        <p class="font-mono text-xs tracking-widest text-rust mb-6">06 &middot; OFF THE CLOCK</p>
+        <p class="font-mono text-xs tracking-widest text-rust mb-6">OFF THE CLOCK</p>
         <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95]">
           Also,<br/>
           <span class="italic">a whole person.</span>
@@ -628,8 +857,7 @@
 
         <div class="polaroid bg-white rounded-lg p-3 pb-6 rotate-[-3deg]">
           <div class="aspect-[4/5] overflow-hidden rounded">
-            <img src="images/f1.jpg"
-                 class="w-full h-full object-cover" alt="Lewis Hamilton driving the Ferrari SF-25"/>
+            <img src="images/f1.jpg" class="w-full h-full object-cover" alt="Lewis Hamilton driving the Ferrari SF-25"/>
           </div>
           <p class="font-display italic text-xl mt-4 text-center">Formula 1</p>
           <p class="text-center text-xs text-ink/60 mt-1">Hamilton for the win. Always.</p>
@@ -689,34 +917,35 @@
     </div>
   </section>
 
-  <!-- ============== BIG QUOTE ============== -->
+  <!-- ============== BIG QUOTE (C + H mixed) ============== -->
   <section class="py-28 md:py-40 bg-rust text-cream relative overflow-hidden">
     <div class="max-w-5xl mx-auto px-6 text-center reveal">
       <p class="font-mono text-xs tracking-widest mb-8 opacity-80">A FEW OTHER THINGS</p>
+      <p class="font-display text-3xl md:text-5xl leading-tight italic mb-6">
+        &ldquo;Curiosity compounds faster than credentials. Especially now.
+      </p>
       <p class="font-display text-3xl md:text-5xl leading-tight italic mb-8">
-        &ldquo;I care about three things at work:
-        does the customer notice, does the team trust each other,
-        and does the metric move.
-        <span class="not-italic">Everything else is preference.&rdquo;</span>
+        The people who win the next decade won't be the ones who use AI the most.
+        <span class="not-italic">They'll be the ones who know when not to.&rdquo;</span>
       </p>
       <p class="font-mono text-sm opacity-70">me, in most conversations</p>
     </div>
   </section>
 
-  <!-- ============== CONTACT ============== -->
+  <!-- ============== 06 · SAY HI ============== -->
   <section id="contact" class="py-28 md:py-40 bg-cream">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-[1.2fr_1fr] gap-16 items-center">
         <div class="reveal">
-          <p class="font-mono text-xs tracking-widest text-rust mb-6">07 &middot; SAY HI</p>
+          <p class="font-mono text-xs tracking-widest text-rust mb-6">06 &middot; SAY HI</p>
           <h2 class="font-display text-5xl md:text-8xl font-medium leading-[0.9]">
-            Let's talk about<br/>
-            <span class="italic text-rust">what could ship next.</span>
+            Let's untangle<br/>
+            <span class="italic text-rust">something interesting.</span>
           </h2>
           <p class="mt-8 text-lg text-ink/70 max-w-xl">
-            Open to Strategy &amp; Operations roles where partner motions,
-            segmentation, and operating cadence are the hard problem.
-            Based in Austin, TX. Authorized to work in the US. Valid H-1B.
+            Open to Strategy &amp; Operations roles where the hard problem is real, the room
+            is smart, and AI is a fair-game tool. Based in Austin, TX. Authorized to work
+            in the US. Valid H-1B.
           </p>
           <p class="mt-4 text-sm text-ink/50 font-mono">Also: coffee. Any time. Ask.</p>
         </div>
@@ -750,13 +979,12 @@
 
 </main>
 
-<!-- ============== FOOTER ============== -->
 <footer class="bg-ink text-cream py-16 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
       <div>
         <p class="font-display text-6xl md:text-8xl italic">Thanks<span class="text-rust">.</span></p>
-        <p class="mt-4 text-cream/60 max-w-md">Built by me, with too much coffee and a soundtrack. Photos: Unsplash contributors. Type: Fraunces + Inter + JetBrains Mono.</p>
+        <p class="mt-4 text-cream/60 max-w-md">Built by me, with too much coffee and a soundtrack. Photos: Unsplash contributors &amp; Wikimedia Commons. Type: Fraunces + Inter + JetBrains Mono.</p>
       </div>
       <div class="text-cream/50 text-sm space-y-2 md:text-right">
         <p>&copy; <span id="year"></span> Ashwyn Kumar</p>
@@ -767,77 +995,71 @@
 </footer>
 
 <script>
-  // ============== YEAR ==============
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ============== CUSTOM CURSOR ==============
+  // Cursor
   const dot = document.querySelector('.cursor-dot');
   const ring = document.querySelector('.cursor-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-  });
-  function loop() {
-    rx += (mx - rx) * 0.15;
-    ry += (my - ry) * 0.15;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`; });
+  (function loop(){ rx+=(mx-rx)*0.15; ry+=(my-ry)*0.15; ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(loop); })();
   document.querySelectorAll('[data-cursor="hover"], a, button').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
 
-  // ============== SCROLL PROGRESS ==============
-  const progress = document.querySelector('.progress');
+  // Scroll progress
   window.addEventListener('scroll', () => {
     const h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = `${(window.scrollY / h) * 100}%`;
+    document.querySelector('.progress').style.width = `${(window.scrollY/h)*100}%`;
   });
 
-  // ============== REVEAL ON SCROLL ==============
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.15 });
+  // Reveal
+  const observer = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ============== COUNTERS ==============
-  const countObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const el = e.target;
-        const target = +el.dataset.target;
-        const duration = 1800;
-        const start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.floor(target * eased).toLocaleString();
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        countObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.4 });
+  // Counters
+  const countObserver = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.target, duration = 1800, start = performance.now();
+    (function tick(now){
+      const p = Math.min((now-start)/duration, 1);
+      el.textContent = Math.floor(target * (1 - Math.pow(1-p, 3))).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+    countObserver.unobserve(el);
+  }), { threshold: 0.4 });
   document.querySelectorAll('.counter').forEach(el => countObserver.observe(el));
 
-  // ============== CLOCK TIME ==============
-  function updateTime() {
-    const opts = { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', hour12: false };
-    const t = new Date().toLocaleTimeString('en-US', opts);
+  // Live Austin clock
+  function updateTime(){
+    const t = new Date().toLocaleTimeString('en-US', { timeZone:'America/Chicago', hour:'2-digit', minute:'2-digit', hour12:false });
     const el = document.querySelector('.hero-time');
     if (el) el.textContent = `AUSTIN, TX · ${t} CT`;
   }
-  // update the first "AUSTIN, TX · ..." span if you want a live clock
   const timeEl = document.querySelector('main section:first-of-type .font-mono');
-  if (timeEl) {
-    timeEl.classList.add('hero-time');
-    updateTime();
-    setInterval(updateTime, 30000);
-  }
+  if (timeEl) { timeEl.classList.add('hero-time'); updateTime(); setInterval(updateTime, 30000); }
+
+  // Rotating "Now" tile: 10s auto-cycle + click-to-advance. Weekly shift via week-of-year.
+  (function rotateNow(){
+    const tile = document.getElementById('now-tile');
+    if (!tile) return;
+    const slides = tile.querySelectorAll('.now-slide');
+    const dots = tile.querySelectorAll('.now-dot');
+    if (!slides.length) return;
+    const startOfYear = new Date(new Date().getFullYear(), 0, 1);
+    const week = Math.floor((Date.now() - startOfYear.getTime()) / (7*24*60*60*1000));
+    let i = week % slides.length;
+    let timer;
+    function show(n){
+      slides.forEach((s,idx) => s.classList.toggle('active', idx === n));
+      dots.forEach((d,idx) => { d.classList.toggle('bg-cream/80', idx === n); d.classList.toggle('bg-cream/30', idx !== n); });
+    }
+    function advance(){ i = (i+1) % slides.length; show(i); }
+    function start(){ timer = setInterval(advance, 10000); }
+    show(i); start();
+    tile.addEventListener('click', () => { clearInterval(timer); advance(); start(); });
+  })();
 </script>
 
 </body>

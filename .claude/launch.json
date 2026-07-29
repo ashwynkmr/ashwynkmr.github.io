@@ -4,7 +4,7 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "-s", "out", "-l", "8767"],
+      "runtimeArgs": ["--yes", "serve", "-s", "/Users/ashwyn./Documents/AI Projects/Portfolio website", "-l", "8767"],
       "port": 8767
     }
   ]
